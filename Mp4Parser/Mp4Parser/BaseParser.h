@@ -10,5 +10,22 @@
 #define __Mp4Parser__BaseParser__
 
 #include <stdio.h>
+#include "FIleManger.h"
+#include "Parser.h"
+
+
+
+class BaseParser
+{
+    //Fundamental Compononet.
+    
+    public :
+    FileManger *  fileManger;
+    Parser  *      parser;
+    
+    //    Fundamental Compononet.
+};
+
 
 #endif /* defined(__Mp4Parser__BaseParser__) */
+

@@ -7,3 +7,22 @@
 //
 
 #include "UtilManger.h"
+
+//using namespace std;
+
+
+UtilManger::UtilManger()
+{
+    errorManger = new ErrorManager;
+    sampleOption = new Option;
+    
+};
+
+UtilManger::~UtilManger()
+{
+    delete errorManger;
+    delete sampleOption;
+}
+
+
+

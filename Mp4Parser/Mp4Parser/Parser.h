@@ -12,3 +12,8 @@
 #include <stdio.h>
 
 #endif /* defined(__Mp4Parser__Parser__) */
+
+class Parser
+{
+    
+};

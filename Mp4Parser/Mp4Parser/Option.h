@@ -12,3 +12,11 @@
 #include <stdio.h>
 
 #endif /* defined(__Mp4Parser__Option__) */
+
+class Option
+{
+    int x, y;
+public:
+    static int option_num;
+    
+};

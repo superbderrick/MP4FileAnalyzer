@@ -10,5 +10,17 @@
 #define __Mp4Parser__TempParser__
 
 #include <stdio.h>
+#include "BaseParser.h"
 
 #endif /* defined(__Mp4Parser__TempParser__) */
+class TempParser : BaseParser
+{
+public:
+    //char* mFilepath;
+    
+    TempParser(char * fileName);
+    ~TempParser();
+    
+    // parser start.
+    void startParsingData(char * fileName , FileManger * , Parser *);
+};

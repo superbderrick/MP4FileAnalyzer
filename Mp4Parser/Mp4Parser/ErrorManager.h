@@ -10,5 +10,20 @@
 #define __Mp4Parser__ErrorManager__
 
 #include <stdio.h>
+#include <map>
+#include <string>
 
 #endif /* defined(__Mp4Parser__ErrorManager__) */
+
+class ErrorManager{
+    
+public:
+    
+    ErrorManager();
+    void showErrorMessage(int num);
+    
+private:
+    std::map< int, int > guideMap;
+    void initStringTable();
+    void init();
+};
