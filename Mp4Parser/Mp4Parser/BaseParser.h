@@ -11,7 +11,7 @@
 
 #include <stdio.h>
 #include "FIleManger.h"
-#include "Parser.h"
+#include "Processer.h"
 
 
 
@@ -21,7 +21,7 @@ class BaseParser
     
     public :
     FileManger *  fileManger;
-    Parser  *      parser;
+    Processer  *      processer;
     
     //    Fundamental Compononet.
 };

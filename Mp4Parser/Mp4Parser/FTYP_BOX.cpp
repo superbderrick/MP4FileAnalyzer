@@ -7,3 +7,14 @@
 //
 
 #include "FTYP_BOX.h"
+
+FTYP_BOX::FTYP_BOX()
+{
+    mParsingType = "data";
+    _majorBrand = "data";
+};
+
+FTYP_BOX::~FTYP_BOX()
+{
+    
+};

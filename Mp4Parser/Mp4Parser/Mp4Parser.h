@@ -11,16 +11,22 @@
 
 #include <stdio.h>
 #include "BaseParser.h"
+#include "ParserConfig.h"
+#include "FTYP_Box.h"
+#include "TextBuilder.h"
+#include <fstream>
+#include <iostream>
 
 #endif /* defined(__Mp4Parser__TempParser__) */
-class TempParser : BaseParser
+class Mp4Parser : BaseParser
 {
-public:
-    //char* mFilepath;
+private:
+    TextBuilder * mBuilder;
     
-    TempParser(char * fileName);
-    ~TempParser();
+public:
+    Mp4Parser(char * fileName);
+    Mp4Parser();
     
     // parser start.
-    void startParsingData(char * fileName , FileManger * , Parser *);
+    void startParsingData(char * fileName , FileManger * , Processer * , std::ifstream * mainStream);
 };

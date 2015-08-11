@@ -11,3 +11,5 @@
 
 
 #endif
+
+#define BOXTYPE_NAME_SIZE 5

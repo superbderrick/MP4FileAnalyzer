@@ -7,3 +7,11 @@
 //
 
 #include "Box.h"
+
+Box::Box( void )
+: mType("box")
+, mSize(0)
+{}
+
+Box::~Box( void )
+{}

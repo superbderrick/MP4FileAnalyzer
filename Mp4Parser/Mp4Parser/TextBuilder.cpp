@@ -7,3 +7,22 @@
 //
 
 #include "TextBuilder.h"
+
+TextBuilder::TextBuilder(){
+    
+};
+
+TextBuilder::~TextBuilder(){
+    
+};
+
+void TextBuilder::setStream(std::string stream){
+ 
+    std::string input;
+    input = stream;
+    
+    std::cin >> input;
+    std::ofstream out("output.txt");
+    out << stream;
+    out.close();
+}

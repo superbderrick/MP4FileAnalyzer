@@ -10,5 +10,23 @@
 #define __Mp4Parser__TextBuilder__
 
 #include <stdio.h>
+#include <stdio.h>
+#include <fstream>
+#include <iostream>
+#include <cstring>
+#include <sstream>
+#include "vector"
+
+
+
+class TextBuilder{
+public:
+    TextBuilder();
+    ~TextBuilder();
+    
+    void    setStream(std::string stream);
+};
+
 
 #endif /* defined(__Mp4Parser__TextBuilder__) */
+

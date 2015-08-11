@@ -6,61 +6,70 @@
 //  Copyright (c) 2015 sensation. All rights reserved.
 //
 
-#include "TempParser.h"
-#include <fstream>
-#include <iostream>
+#include "Mp4Parser.h"
 
 
 
-
-TempParser::TempParser(char * fileName)
+Mp4Parser::Mp4Parser(char * fileName)
 {
-    fileManger = new FileManger(fileName);
     
-    parser = new Parser;
+    //Debug example test7.mp4
+    std::ifstream inFile("test7.mp4",std::ios::binary);
     
+    fileManger = new FileManger(fileName ,&inFile);
+    processer = new Processer;
+    
+    mBuilder = new TextBuilder;
     
     //parsing start;
-    startParsingData(fileName , fileManger , parser);
+    startParsingData(fileName , fileManger , processer , &inFile);
     
 };
 
-TempParser::~TempParser()
+
+
+
+Mp4Parser::Mp4Parser()
 {
     delete fileManger;
-    delete parser;
+    delete processer;
+   
 };
 
 
-void TempParser::startParsingData(char * fileName , FileManger * filemanger , Parser * parser)
+void Mp4Parser::startParsingData(char * fileName ,FileManger * filemanger , Processer * Processer , std::ifstream * mainStream)
 {
-    // file stream open.
-    
-    std::ifstream inFile(fileName,std::ios::binary);
-    
-    // length box
     uint32_t             length;
-    
-    // if lengh == 1 Data length will have a extended value, Default is 0
     uint64_t             dataLength;
+    char                 type[ BOXTYPE_NAME_SIZE ] ;
     
-    //type
-    char                 type[ 5 ];
+    memset( type, 0, BOXTYPE_NAME_SIZE );
     
     
-    while (!inFile.eof()) {
-       
-        // calculater whole box size
-        
+    while (!mainStream->eof()) {
         length = filemanger->readBigEndianUnsignedInteger();
-  
-        std::cout << length << std::endl;
+        dataLength = 0;
         
         
+        filemanger->readBoxType( ( char * )type, 4 );
         
+        if( length == 1 )
+        {
+            dataLength = filemanger->readBigEndianUnsignedInteger() - 16;
+        }
+        else
+        {
+            dataLength = length - 8;
+        }
+
+
         
+        Processer->createBox(type , mainStream ,dataLength ,  filemanger);
+        break;
     }
-    inFile.close();
+    
+    
+    mainStream->close();
 }
 
 

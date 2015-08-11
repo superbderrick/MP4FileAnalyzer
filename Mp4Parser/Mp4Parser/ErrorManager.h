@@ -23,6 +23,8 @@ public:
     void showErrorMessage(int num);
     
 private:
+    
+    
     std::map< int, int > guideMap;
     void initStringTable();
     void init();

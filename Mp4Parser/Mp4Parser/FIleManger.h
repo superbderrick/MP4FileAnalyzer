@@ -13,17 +13,24 @@
 #include <fstream>
 #include <iostream>
 
-#endif /* defined(__Mp4Parser__FIleManger__) */
-
-class FileManger 
+class FileManger
 {
 public:
     char * mFileName;
-    std::ifstream inputFile;
+    std::ifstream * mFileStream;
     
     
-    FileManger(char * fileName);
+    FileManger(char * fileName ,std::ifstream * mainStream );
     ~FileManger();
     
+    uint32_t readBigEndianUnsignedInteger(std::ifstream * file);
     uint32_t readBigEndianUnsignedInteger();
+    
+    uint32_t readLittleEndianUnsignedInteger( void );
+
+    std::istream & readBoxType(char * s, std::streamsize n);
+    
+    
 };
+#endif /* defined(__Mp4Parser__FIleManger__) */
+
