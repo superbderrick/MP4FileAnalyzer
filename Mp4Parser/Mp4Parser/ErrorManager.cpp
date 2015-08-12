@@ -20,6 +20,10 @@ ErrorManager::ErrorManager()
     init();
 }
 
+ErrorManager::~ErrorManager()
+{
+    
+}
 void ErrorManager::init()
 {
     initStringTable();

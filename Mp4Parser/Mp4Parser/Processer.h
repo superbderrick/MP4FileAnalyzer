@@ -20,7 +20,10 @@
 #include "FIleManger.h"
 #include "FTYP_BOX.h"
 #include "TextBuilder.h"
-#endif /* defined(__Mp4Parser__Parser__) */
+
+
+
+
 
 
 class Processer
@@ -39,12 +42,22 @@ public:
     Processer();
     ~Processer();
     
-   
+    
     
     std::string getDescription( std::string _majorBrand , uint32_t _minorVersion );
     
     void createBox(char * type , std::ifstream * mainStream, size_t length, FileManger * filemanger );
     
-  
+    
     
 };
+
+
+
+
+
+
+
+#endif /* defined(__Mp4Parser__Parser__) */
+
+

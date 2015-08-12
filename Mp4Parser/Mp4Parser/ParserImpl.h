@@ -10,5 +10,11 @@
 #define __Mp4Parser__ParserImpl__
 
 #include <stdio.h>
+#include "Processer.h"
 
 #endif /* defined(__Mp4Parser__ParserImpl__) */
+
+class ParserImpl{
+public:
+    virtual void startParsingData(FileManger * filemanger , Processer * Processer , std::ifstream * mainStream) = 0;
+};

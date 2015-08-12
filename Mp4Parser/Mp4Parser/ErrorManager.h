@@ -20,6 +20,7 @@ class ErrorManager{
 public:
     
     ErrorManager();
+    ~ErrorManager();
     void showErrorMessage(int num);
     
 private:

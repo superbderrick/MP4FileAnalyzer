@@ -7,3 +7,8 @@
 //
 
 #include "ParserImpl.h"
+
+void ParserImpl::startParsingData(FileManger * filemanger , Processer * Processer , std::ifstream * mainStream)
+{
+    
+};

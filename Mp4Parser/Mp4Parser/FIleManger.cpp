@@ -12,8 +12,6 @@
 
 FileManger::FileManger(char * fileName ,std::ifstream * mainStream)
 {
-    // init file referecne.
-    // std::ifstream inputFile(fileName,std::ios::binary);
     mFileStream = mainStream;
     mFileName = fileName;
 }
@@ -43,17 +41,17 @@ uint32_t FileManger::readBigEndianUnsignedInteger(std::ifstream * file)
 uint32_t FileManger::readBigEndianUnsignedInteger()
 {
     
-    uint8_t  c[ 4 ];
-    uint32_t n;
+    uint8_t  block[ 4 ];
+    uint32_t wholeblock;
     
-    mFileStream->read( ( char * )c, 4 );
+    mFileStream->read( ( char * )block, 4 );
     
-    n = ( uint32_t )c[ 0 ] << 24
-    | ( uint32_t )c[ 1 ] << 16
-    | ( uint32_t )c[ 2 ] << 8
-    | ( uint32_t )c[ 3 ];
+    wholeblock = ( uint32_t )block[ 0 ] << 24
+    | ( uint32_t )block[ 1 ] << 16
+    | ( uint32_t )block[ 2 ] << 8
+    | ( uint32_t )block[ 3 ];
     
-    return n;
+    return wholeblock;
 }
 
 uint32_t FileManger::readLittleEndianUnsignedInteger( void )

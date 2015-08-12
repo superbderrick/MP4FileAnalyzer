@@ -60,43 +60,7 @@ void Processer::createBox(char *type, std::ifstream *mainStream, size_t length, 
         
     }
     
-    
-    //std::cout << test<< std::endl;
 };
-
-
-
-
-//std::string * s;
-//char brand[ 5 ];
-//
-//
-//memset( brand, 0, 5 );
-//mainStream->read( brand, 4 );
-//
-//
-//_majorBrand.append( brand );
-//
-//_minorVersion = filemanger->readBigEndianUnsignedInteger();
-//
-//if( length > 8 )
-//{
-//    length -= 8;
-//
-//    while( length > 0 )
-//    {
-//        mainStream->read( brand, 4 );
-//
-//        length -= 4;
-//        s       = new std::string( brand );
-//
-//        _compatibleBrands.push_back( s );
-//    }
-//}
-//
-
-
-
 
 
 void Processer::processData(FTYP_BOX * box , std::ifstream * mainStream, size_t length , FileManger * filemanger)
@@ -134,32 +98,29 @@ void Processer::processData(FTYP_BOX * box , std::ifstream * mainStream, size_t 
 void Processer::processData(Box * box , std::ifstream * mainStream, size_t length , FileManger * filemanger)
 {
     
-    std::string * s;
-    char brand[ 5 ];
-    
-    
-    memset( brand, 0, 5 );
-    mainStream->read( brand, 4 );
-    
-    
-    //    box->.append( brand );
-    
-    //  _minorVersion = filemanger->readBigEndianUnsignedInteger();
-    
-    if( length > 8 )
-    {
-        length -= 8;
-        
-        while( length > 0 )
-        {
-            mainStream->read( brand, 4 );
-            
-            length -= 4;
-            s       = new std::string( brand );
-            
-            //    _compatibleBrands.push_back( s );
-        }
-    }
+//    std::string * s;
+//    char brand[ 5 ];
+//    
+//    
+//    memset( brand, 0, 5 );
+//    mainStream->read( brand, 4 );
+//    
+//    
+//    
+//    if( length > 8 )
+//    {
+//        length -= 8;
+//        
+//        while( length > 0 )
+//        {
+//            mainStream->read( brand, 4 );
+//            
+//            length -= 4;
+//            s       = new std::string( brand );
+//            
+//            //    _compatibleBrands.push_back( s );
+//        }
+//    }
     
 };
 

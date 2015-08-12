@@ -25,4 +25,5 @@ void TextBuilder::setStream(std::string stream){
     std::ofstream out("output.txt");
     out << stream;
     out.close();
+    exit(0);
 }
