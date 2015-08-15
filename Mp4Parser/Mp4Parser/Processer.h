@@ -15,28 +15,22 @@
 #include <cstring>
 #include <sstream>
 #include "vector"
-
+#include "ParserConfig.h"
 #include "Box.h"
 #include "FIleManger.h"
-#include "FTYP_BOX.h"
 #include "TextBuilder.h"
+#include "BoxModel.h"
 
-
-
-
-
+// Boxes data headers
+#include "FTYP_BOX.h"
+#include "ContainerBox.h"
 
 class Processer
 {
     
 private:
-    
-    TextBuilder * textBuilder ;
-    
-    std::string getData(char *type, std::string _majorBrand, uint32_t _minorVersion, std::vector< std::string * > _compatibleBrands);
-    void processData(Box * box , std::ifstream * mainStream, size_t length , FileManger * filemanger);
-    
-    void processData(FTYP_BOX * box , std::ifstream * mainStream, size_t length , FileManger * filemanger);
+   
+    void processData(Box * box , char *type,std::ifstream * mainStream, size_t length , FileManger * filemanger);
     
 public:
     Processer();
@@ -46,9 +40,7 @@ public:
     
     std::string getDescription( std::string _majorBrand , uint32_t _minorVersion );
     
-    void createBox(char * type , std::ifstream * mainStream, size_t length, FileManger * filemanger );
-    
-    
+    void start(FileManger * filemanger, std::ifstream * mainStream , BoxModel * boxModel);
     
 };
 

@@ -18,14 +18,13 @@ int Option::option_num = 3;
 
 int main(int argc, const char * argv[]) {
     
-    
     UtilManger * utilManger = new UtilManger;
     
     Mp4Parser * mp4Parser = new Mp4Parser("test1.mp4");
     
-    mp4Parser->start();
+  //  mp4Parser->start();
     
-    exit(1);
+    
     return 0;
 }
 

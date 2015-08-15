@@ -13,17 +13,19 @@
 #include "BaseParser.h"
 #include "ParserConfig.h"
 #include "TextBuilder.h"
-#include "ParserImpl.h"
+#include "BoxModel.h"
+
 #include <fstream>
 #include <iostream>
 
 #endif /* defined(__Mp4Parser__TempParser__) */
-class Mp4Parser : BaseParser , ParserImpl
+class Mp4Parser : BaseParser 
 {
 private:
     TextBuilder * mBuilder;
-    
-    virtual void startParsingData(FileManger * filemanger , Processer * Processer , std::ifstream * mainStream);
+    BoxModel * mBoxModel;
+
+    //virtual void startParsingData(FileManger * filemanger , Processer * Processer , std::ifstream * mainStream);
 public:
     Mp4Parser(char * fileName);
     Mp4Parser();

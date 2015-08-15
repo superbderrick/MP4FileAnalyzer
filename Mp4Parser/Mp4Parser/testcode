@@ -237,6 +237,23 @@ std::cout << dataLength << std::endl;
 
 
 
+//int WriteFile(std::map<char * , std::string> *m) {
+//    int count = 0;
+//    if (m->empty())
+//        return 0;
+//
+//    FILE *fp = fopen("out_put.txt", "w");
+//    if (!fp)
+//        return -errno;
+//
+//    for(std::map<char *, std::string>::iterator it = m->begin(); it != m->end(); it++) {
+//        fprintf(fp, "%s=%s\n", it->first.c_str(), it->second.c_str());
+//        count++;
+//    }
+//
+//    fclose(fp);
+//    return count;
+//}
 
 
 

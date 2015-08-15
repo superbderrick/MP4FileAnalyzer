@@ -16,14 +16,22 @@ TextBuilder::~TextBuilder(){
     
 };
 
-void TextBuilder::setStream(std::string stream){
- 
-    std::string input;
-    input = stream;
+void TextBuilder::setBoxData(BoxModel * boxdata){
     
-    std::cin >> input;
-    std::ofstream out("output.txt");
-    out << stream;
-    out.close();
-    exit(0);
+    std::string s;
+    std::multimap< char *, std::string >::iterator it;
+    std::ofstream outFile("output.txt");
+    
+
+    for( it = boxdata->boxDataMap.begin(); it != boxdata->boxDataMap .end(); ++it )
+    {
+        //debug
+        std::cout << it->second<< std::endl;
+        outFile << it->second<<std::endl;
+    }
+    
+    outFile.close();
+
+    
 }
+

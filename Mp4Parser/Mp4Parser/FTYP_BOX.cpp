@@ -10,8 +10,8 @@
 
 FTYP_BOX::FTYP_BOX()
 {
-    mParsingType = "data";
-    _majorBrand = "data";
+   // mParsingType = "data";
+   // _majorBrand = "data";
 };
 
 FTYP_BOX::~FTYP_BOX()

@@ -7,3 +7,13 @@
 //
 
 #include "ContainerBox.h"
+
+ContainerBox::ContainerBox()
+{
+    
+};
+
+ContainerBox::~ContainerBox()
+{
+    
+};

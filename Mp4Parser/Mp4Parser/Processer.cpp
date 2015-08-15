@@ -10,119 +10,115 @@
 
 Processer::Processer()
 {
-    textBuilder = new TextBuilder();
+    std::cout << "Processer() iscalled; "<< std::endl;
+
 };
 
 Processer::~Processer()
 {
-    delete textBuilder;
+    std::cout << " ~ Processer() iscalled; "<< std::endl;
+  
 };
 
+/////////////////////////////-----------------------------------/////////////////////////////////////////////Parsing Logic
 
 
-std::string Processer::getData(char *type, std::string _majorBrand, uint32_t _minorVersion, std::vector< std::string * > _compatibleBrands){
+
+
+void Processer::start(FileManger * filemanger, std::ifstream * mainStream , BoxModel * boxModel)
+{
+    uint32_t             length;
+    uint64_t             dataLength;
+    char                 type[ BOXTYPE_NAME_SIZE ] ;
+    
+    Box * box;
+    box = NULL;
+  
+    
+    memset( type, 0, BOXTYPE_NAME_SIZE );
     
     
-    std::string s;
-    std::string * tt;
-    std::vector< std::string * >::iterator it;
-    std::ostringstream o;
-    
-    o << "MP4 Atom:           " << type << "\n";
-    o << "                      - Major brand:       " << _majorBrand << "\n";
-    o << "                      - Minor version:     " << _minorVersion << "\n";
-    o << "                      - Compatible brands: \n";
-    
-    s = o.str();
-    
-    for( it = _compatibleBrands.begin(); it != _compatibleBrands.end(); ++it )
+    while (!mainStream->eof())
     {
-        tt = *( it );
         
-        o << "                          - " << *( tt ) << "\n";
+        length = filemanger->readBigEndianUnsignedInteger();
+        dataLength = 0;
+        
+        
+        filemanger->readBoxType( ( char * )type, BOXTYPE_BASIC_SIZE );
+        
+        if( length == BOXTYPE_EXTEND_SIZE )
+        {
+            dataLength = filemanger->readBigEndianUnsignedInteger() - 16;
+        }
+        else
+        {
+            dataLength = length - 8;
+        }
+        
+        if( strcmp( type, "moov" ) == 0 )
+        {
+            box = (ContainerBox * )(new ContainerBox());
+            //continue;
+        } else if( strcmp( type, "ftyp" ) == 0 )
+        {
+            box = ( FTYP_BOX * )( new FTYP_BOX () );
+        }
+
+        processData(box, type , mainStream, dataLength, filemanger);
+        boxModel->extractData(box , type);
+        
     }
     
-    return o.str();
+   
+    mainStream->close();
 };
 
 
 
-
-void Processer::createBox(char *type, std::ifstream *mainStream, size_t length, FileManger *filemanger)
+////////////////////////////------------------------------------------------ Export Data for each boxes.
+void Processer::processData(Box * box , char *type,std::ifstream * mainStream, size_t length , FileManger * filemanger)
 {
-    std::string test;
     if( strcmp( type, "ftyp" ) == 0 )
     {
-        FTYP_BOX * box = new FTYP_BOX();
-        processData(box, mainStream, length, filemanger);
-
-        textBuilder ->setStream(getData(type , box->_majorBrand, box->_minorVersion, box->_compatibleBrands));
+        std::string * s;
+        char brand[ 5 ];
         
-    }
-    
-};
-
-
-void Processer::processData(FTYP_BOX * box , std::ifstream * mainStream, size_t length , FileManger * filemanger)
-{
-    
-    std::string * s;
-    char brand[ 5 ];
-    
-    
-    memset( brand, 0, 5 );
-    mainStream->read( brand, 4 );
-    
-    
-    box->_majorBrand.append( brand );
-    box->_minorVersion = filemanger->readBigEndianUnsignedInteger();
-    
-    
-    if( length > 8 )
-    {
-        length -= 8;
         
-        while( length > 0 )
+        memset( brand, 0, 5 );
+        mainStream->read( brand, 4 );
+        
+        ((FTYP_BOX *)box)->_majorBrand.append( brand );
+        ((FTYP_BOX *)box)->_minorVersion = filemanger->readBigEndianUnsignedInteger();
+        
+        
+        if( length > 8 )
         {
-            mainStream->read( brand, 4 );
+            length -= 8;
             
-            length -= 4;
-            s       = new std::string( brand );
-            
-                box->_compatibleBrands.push_back( s );
+            while( length > 0 )
+            {
+                mainStream->read( brand, 4 );
+                
+                length -= 4;
+                s       = new std::string( brand );
+                
+                ((FTYP_BOX *)box)->_compatibleBrands.push_back( s );
+            }
         }
+    } else if(strcmp( type, "moov") == 0) {
+        
+        char title[ 4 ];
+        
+        
+        memset( title, 0, 4 );
+        mainStream->read( title, 4 );
+        ((ContainerBox *)box)->mContainerBoxTitle.append(title);
     }
-    
 };
 
-void Processer::processData(Box * box , std::ifstream * mainStream, size_t length , FileManger * filemanger)
-{
-    
-//    std::string * s;
-//    char brand[ 5 ];
-//    
-//    
-//    memset( brand, 0, 5 );
-//    mainStream->read( brand, 4 );
-//    
-//    
-//    
-//    if( length > 8 )
-//    {
-//        length -= 8;
-//        
-//        while( length > 0 )
-//        {
-//            mainStream->read( brand, 4 );
-//            
-//            length -= 4;
-//            s       = new std::string( brand );
-//            
-//            //    _compatibleBrands.push_back( s );
-//        }
-//    }
-    
-};
+
+/////////////////////////////-----------------------------------/////////////////////////////////////////////ProcessDATA
 
 
 

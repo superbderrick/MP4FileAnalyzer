@@ -20,7 +20,6 @@ class FTYP_BOX :public Box
     
 public:
     
-    
     std::string _majorBrand;
     uint32_t _minorVersion;
     std::vector< std::string * > _compatibleBrands;
