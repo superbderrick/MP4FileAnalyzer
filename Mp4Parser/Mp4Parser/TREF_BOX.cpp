@@ -7,3 +7,14 @@
 //
 
 #include "TREF_BOX.h"
+
+
+TREF_BOX::TREF_BOX()
+{
+    
+}
+
+TREF_BOX::~TREF_BOX()
+{
+    
+}

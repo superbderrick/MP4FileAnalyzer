@@ -56,14 +56,29 @@ void Processer::start(FileManger * filemanger, std::ifstream * mainStream , BoxM
             dataLength = length - 8;
         }
         
-        if( strcmp( type, "moov" ) == 0 )
+        if( strcmp( type, "moov" ) == 0 || strcmp( type, "trak" ) == 0 || strcmp( type, "mdia" ) == 0 )
         {
             box = (ContainerBox * )(new ContainerBox());
-            //continue;
-        } else if( strcmp( type, "ftyp" ) == 0 )
+        }
+        else if( strcmp( type, "ftyp" ) == 0 )
         {
             box = ( FTYP_BOX * )( new FTYP_BOX () );
         }
+        else if(strcmp( type, "mvhd" ) == 0) {
+            box = ( MVHD_BOX * )( new MVHD_BOX () );
+        }
+        else if(strcmp( type, "tkhd" ) == 0) {
+            box = ( TKHD_BOX * )( new TKHD_BOX () );
+        }
+        else if(strcmp( type, "tref" ) == 0) {
+            box = ( TREF_BOX * )( new TREF_BOX () );
+        }
+        else if(strcmp( type, "mdhd" ) == 0) {
+            box = ( MDHD_BOX * )( new MDHD_BOX () );
+        }
+        
+        
+        
 
         processData(box, type , mainStream, dataLength, filemanger);
         boxModel->extractData(box , type);
@@ -106,7 +121,9 @@ void Processer::processData(Box * box , char *type,std::ifstream * mainStream, s
                 ((FTYP_BOX *)box)->_compatibleBrands.push_back( s );
             }
         }
-    } else if(strcmp( type, "moov") == 0) {
+    }
+    else if(strcmp( type, "moov") == 0 || strcmp( type, "trak" ) == 0 || strcmp( type, "mdia" ) == 0)
+    {
         
         char title[ 4 ];
         
@@ -115,6 +132,81 @@ void Processer::processData(Box * box , char *type,std::ifstream * mainStream, s
         mainStream->read( title, 4 );
         ((ContainerBox *)box)->mContainerBoxTitle.append(title);
     }
+    else if(strcmp( type, "mvhd") == 0)
+    {
+        if( ((MVHD_BOX *)box)->mVersion == 1 )
+        {
+            ((MVHD_BOX *)box)->mCreationTime     = filemanger->readBigEndianUnsignedLong();
+            ((MVHD_BOX *)box)->mModificationTime = filemanger->readBigEndianUnsignedLong();
+            ((MVHD_BOX *)box)->mTimeScale        = filemanger->readBigEndianUnsignedInteger();
+            ((MVHD_BOX *)box)->mDuration        =  filemanger->readBigEndianUnsignedLong();
+            ((MVHD_BOX *)box)->mRate            =  filemanger->readBigEndianFixedPoint( 16, 16 );
+            ((MVHD_BOX *)box)->mVolume           = filemanger->readBigEndianFixedPoint( 8, 8 );
+            
+            filemanger->ignore( 10 );
+       
+            filemanger->ignore( 24 );
+            
+             ((MVHD_BOX *)box)->mNextTrackId = filemanger->readBigEndianUnsignedInteger();
+        }
+        else
+        {
+            ((MVHD_BOX *)box)->mCreationTime      = filemanger->readBigEndianUnsignedInteger();
+            ((MVHD_BOX *)box)->mModificationTime = filemanger->readBigEndianUnsignedInteger();
+            ((MVHD_BOX *)box)->mTimeScale        = filemanger->readBigEndianUnsignedInteger();
+            ((MVHD_BOX *)box)->mDuration         = filemanger->readBigEndianUnsignedInteger();
+            ((MVHD_BOX *)box)->mRate             = filemanger->readBigEndianFixedPoint( 16, 16 );
+            ((MVHD_BOX *)box)->mVolume           = filemanger->readBigEndianFixedPoint( 8, 8 );
+            
+            filemanger->ignore( 10 );
+            filemanger->readMatrix( &( ((MVHD_BOX *)box)->mMatrix ) );
+            filemanger->ignore( 24 );
+            
+            ((MVHD_BOX *)box)->mNextTrackId = filemanger->readBigEndianUnsignedInteger();
+        }
+    }
+    else if(strcmp( type, "mdhd") == 0 )
+    {
+        size_t parsedLength;
+        
+       // FullBox::processData( stream, length );
+        
+        if( ((MDHD_BOX *)box)->mVersion == 1 )
+        {
+            parsedLength            = 30;
+            ((MDHD_BOX *)box)->mCreationTime     = filemanger->readBigEndianUnsignedLong();
+            ((MDHD_BOX *)box)->mModificationTime = filemanger->readBigEndianUnsignedLong();
+        }
+        else
+        {
+            parsedLength            = 22;
+             ((MDHD_BOX *)box)->mCreationTime     = filemanger->readBigEndianUnsignedInteger();
+             ((MDHD_BOX *)box)->mModificationTime = filemanger->readBigEndianUnsignedInteger();
+        }
+        
+         ((MDHD_BOX *)box)->mTimeScale = filemanger->readBigEndianUnsignedInteger();
+         ((MDHD_BOX *)box)->mDuration  = filemanger->readBigEndianUnsignedInteger();
+         ((MDHD_BOX *)box)->mLanguage  = filemanger->readBigEndianISO639Code();
+        
+        filemanger->ignore( length - parsedLength );
+    }
+    
+    else if(strcmp( type, "tkhd") == 0 )
+    {
+        char title[ 4 ];
+        memset( title, 0, 4 );
+        mainStream->read( title, 4 );
+        ((TKHD_BOX *)box)->mType.append(title);
+    }
+    else if(strcmp( type, "tref") == 0 )
+    {
+        char title[ 4 ];
+        memset( title, 0, 4 );
+        mainStream->read( title, 4 );
+        ((TREF_BOX *)box)->mType.append(title);
+    }
+    
+    
 };
 
 

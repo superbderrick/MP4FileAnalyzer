@@ -13,12 +13,20 @@
 #include <fstream>
 #include <iostream>
 
+#include "math.h"
+#include "stdint.h"
+#include "FIleManger.h"
+#include "types.h"
+
+//
+
 class FileManger
 {
 public:
     char * mFileName;
     std::ifstream * mFileStream;
     
+     std::ifstream stream;
     
     FileManger(char * fileName ,std::ifstream * mainStream );
     ~FileManger();
@@ -27,10 +35,24 @@ public:
     uint32_t readBigEndianUnsignedInteger();
     
     uint32_t readLittleEndianUnsignedInteger( void );
+    
+    uint64_t readBigEndianUnsignedLong( void );
 
     std::istream & readBoxType(char * s, std::streamsize n);
     
     
+    float readBigEndianFixedPoint( unsigned int integerLength, unsigned int fractionalLength );
+    float readLittleEndianFixedPoint( unsigned int integerLength, unsigned int fractionalLength );
+    
+    uint16_t readBigEndianUnsignedShort( void );
+    uint16_t readLittleEndianUnsignedShort( void );
+    
+    
+    std::istream & ignore( std::streamsize n = 1, int delim = EOF );
+    
+    void readMatrix( matrix * m );
+    
+   std::string * readBigEndianISO639Code( void );
 };
 #endif /* defined(__Mp4Parser__FIleManger__) */
 

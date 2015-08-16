@@ -9,5 +9,20 @@
 #ifndef Mp4Parser_types_h
 #define Mp4Parser_types_h
 
+typedef struct _matrix
+{
+    float a;
+    float b;
+    float u;
+    float c;
+    float d;
+    float v;
+    float x;
+    float y;
+    float w;
+}
+matrix;
 
 #endif
+
+

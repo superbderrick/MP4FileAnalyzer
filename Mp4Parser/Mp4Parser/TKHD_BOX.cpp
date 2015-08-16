@@ -7,3 +7,13 @@
 //
 
 #include "TKHD_BOX.h"
+
+TKHD_BOX::TKHD_BOX()
+{
+    
+}
+
+TKHD_BOX::~TKHD_BOX()
+{
+    
+}

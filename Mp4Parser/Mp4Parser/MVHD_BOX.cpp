@@ -7,3 +7,13 @@
 //
 
 #include "MVHD_BOX.h"
+
+MVHD_BOX::MVHD_BOX()
+{
+    
+};
+
+MVHD_BOX::~MVHD_BOX()
+{
+    
+};

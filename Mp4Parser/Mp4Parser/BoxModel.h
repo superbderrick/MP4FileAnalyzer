@@ -19,6 +19,7 @@
 
 #include <sstream>
 #include "FTYP_BOX.h"
+#include "MDHD_BOX.h"
 //#include "ContainerBox.h"
 
 class BoxModel

@@ -25,7 +25,7 @@ private:
     TextBuilder * mBuilder;
     BoxModel * mBoxModel;
 
-    //virtual void startParsingData(FileManger * filemanger , Processer * Processer , std::ifstream * mainStream);
+    
 public:
     Mp4Parser(char * fileName);
     Mp4Parser();

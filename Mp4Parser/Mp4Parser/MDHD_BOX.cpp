@@ -7,3 +7,14 @@
 //
 
 #include "MDHD_BOX.h"
+
+
+MDHD_BOX::MDHD_BOX()
+{
+    
+}
+
+MDHD_BOX::~MDHD_BOX()
+{
+    
+}
