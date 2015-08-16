@@ -21,12 +21,11 @@ void TextBuilder::setBoxData(BoxModel * boxdata){
     std::string s;
     std::multimap< char *, std::string >::iterator it;
     std::ofstream outFile("output.txt");
-    
 
     for( it = boxdata->boxDataMap.begin(); it != boxdata->boxDataMap .end(); ++it )
     {
         //debug
-        std::cout << it->second<< std::endl;
+      //  std::cout << it->second<< std::endl;
         outFile << it->second<<std::endl;
     }
     

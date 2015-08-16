@@ -20,7 +20,7 @@
 #include <sstream>
 #include "FTYP_BOX.h"
 #include "MDHD_BOX.h"
-//#include "ContainerBox.h"
+#include "ContainerBox.h"
 
 class BoxModel
 {
@@ -31,7 +31,9 @@ public:
     BoxModel();
     ~BoxModel();
     
-    void  extractData( Box * box , char *type );
+    void  extractDataBox( Box * box , char *type );
+    void  extractContainerBox( ContainerBox *box );
+    
     bool hasChildren( void );
     unsigned int numberOfChildren( void );
     

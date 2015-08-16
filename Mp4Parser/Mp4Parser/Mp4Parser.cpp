@@ -25,14 +25,11 @@ Mp4Parser::Mp4Parser(char * fileName)
     
     
    
-   // todo : how to declare member file stream
-   // startParsingData(fileManger, processer, &inFile);
+
     
     processer->start(fileManger, &inFile , mBoxModel);
-    std::cout << "finish file read" << std::endl;
-    // callback register have to do.
-   
-    std::cout << mBoxModel->hasChildren() << std::endl;
+    
+  
     
     mBuilder->setBoxData(mBoxModel);
    

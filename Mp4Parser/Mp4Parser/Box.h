@@ -13,14 +13,9 @@
 #include <string.h>
 #include <stdio.h>
 #include <fstream>
+#include "FIleManger.h"
 
 
-typedef struct _Box
-{
-    char* pType;
-    int nSize;
-    _Box* pNext;
-} tempBox;
 
 
 
@@ -34,8 +29,12 @@ public:
     int mSize;
     std::string mParsingType;
     
+    uint8_t  _version;
+    uint32_t _flags;
+    
     Box();
     virtual ~Box( void );
+//    void processData( FileManger * stream, size_t length );
     
    
     

@@ -19,7 +19,7 @@ BoxModel::~BoxModel()
 };
 
 
-void BoxModel::extractData(Box *box ,char *type) {
+void BoxModel::extractDataBox(Box *box ,char *type) {
     std::string final ;
     std::ostringstream stringStream;
     if(strcmp(type, "ftyp") == 0 )
@@ -46,16 +46,11 @@ void BoxModel::extractData(Box *box ,char *type) {
         final = stringStream.str();
         
     }
-    else if (strcmp(type, "moov") == 0) {
-        
-         stringStream << "MP4 Box:  Container box         " << type << "\n";
-        
-         final =stringStream.str();
-       
-    }
+
     else if (strcmp(type, "mvhd") == 0) {
         
-        stringStream << "MP4 Box:  movie header, overall declarations       " << type << "\n";
+        stringStream << "MP4 Box:         " << type << "";
+        stringStream << "Information : Movie  ";
         
         final =stringStream.str();
         
@@ -91,7 +86,7 @@ void BoxModel::extractData(Box *box ,char *type) {
     
     else if (strcmp(type, "mdhd") == 0) {
         
-        stringStream << "MP4 Atom:           " <<  type << "\n";
+        stringStream << "MP4 Box:           " <<  type << "\n";
         stringStream << "                      - Creation time:     " << ((MDHD_BOX *)box)->mCreationTime     << "\n";
         stringStream << "                      - Modification time: " << ((MDHD_BOX *)box)->mModificationTime << "\n";
         stringStream << "                      - Time scale:        " << ((MDHD_BOX *)box)->mTimeScale        << "\n";
@@ -101,10 +96,30 @@ void BoxModel::extractData(Box *box ,char *type) {
         final =stringStream.str();
         
     }
+    else{
+        return ;
+    }
     
     boxDataMap.insert(std::pair< char *, std::string >(type, final ) );
+
     
 };
+
+void BoxModel::extractContainerBox(ContainerBox *box ) {
+    std::string final ;
+    std::ostringstream stringStream;
+    
+     if (strcmp(box->mContainerBoxTitle, "moov") == 0) {
+        
+        stringStream << "MP4 Box:  Container box         " << box->mContainerBoxTitle << "\n";
+        
+        
+    }
+    
+    final =stringStream.str();
+    boxDataMap.insert(std::pair< char *, std::string >(box->mContainerBoxTitle, final ) );
+    
+}
 
 bool BoxModel::hasChildren(void)
 {
@@ -114,6 +129,7 @@ bool BoxModel::hasChildren(void)
 
 unsigned int  BoxModel::numberOfChildren(void)
 {
+
     return boxDataMap.size();
 };
 

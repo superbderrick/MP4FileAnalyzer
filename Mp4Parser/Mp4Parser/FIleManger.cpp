@@ -48,6 +48,7 @@ uint32_t FileManger::readBigEndianUnsignedInteger()
     | ( uint32_t )block[ 1 ] << 16
     | ( uint32_t )block[ 2 ] << 8
     | ( uint32_t )block[ 3 ];
+  
     
     return wholeblock;
 }

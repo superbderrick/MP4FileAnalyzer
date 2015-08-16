@@ -8,9 +8,14 @@
 
 #include "ContainerBox.h"
 
+ContainerBox::ContainerBox(char * type)
+{
+    mContainerBoxTitle  = type;
+};
+
 ContainerBox::ContainerBox()
 {
-    
+
 };
 
 ContainerBox::~ContainerBox()

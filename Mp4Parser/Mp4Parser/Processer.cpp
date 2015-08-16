@@ -30,22 +30,26 @@ void Processer::start(FileManger * filemanger, std::ifstream * mainStream , BoxM
     uint32_t             length;
     uint64_t             dataLength;
     char                 type[ BOXTYPE_NAME_SIZE ] ;
+    char                 containerType[ BOXTYPE_NAME_SIZE ] ;
     
     Box * box;
+    ContainerBox * containerBox;
     box = NULL;
+    containerBox = NULL;
   
     
     memset( type, 0, BOXTYPE_NAME_SIZE );
-    
+    memset( containerType, 0, BOXTYPE_NAME_SIZE );
     
     while (!mainStream->eof())
     {
         
         length = filemanger->readBigEndianUnsignedInteger();
+        
         dataLength = 0;
         
-        
         filemanger->readBoxType( ( char * )type, BOXTYPE_BASIC_SIZE );
+      
         
         if( length == BOXTYPE_EXTEND_SIZE )
         {
@@ -56,9 +60,14 @@ void Processer::start(FileManger * filemanger, std::ifstream * mainStream , BoxM
             dataLength = length - 8;
         }
         
+  
         if( strcmp( type, "moov" ) == 0 || strcmp( type, "trak" ) == 0 || strcmp( type, "mdia" ) == 0 )
         {
-            box = (ContainerBox * )(new ContainerBox());
+            
+            strcpy(containerType, type);
+            containerBox = (ContainerBox * )(new ContainerBox(containerType));
+            
+            continue;
         }
         else if( strcmp( type, "ftyp" ) == 0 )
         {
@@ -76,13 +85,22 @@ void Processer::start(FileManger * filemanger, std::ifstream * mainStream , BoxM
         else if(strcmp( type, "mdhd" ) == 0) {
             box = ( MDHD_BOX * )( new MDHD_BOX () );
         }
+        else
+        {
+           // box = ( UNKNON_BOX * )( new UNKNON_BOX (type) );
+        }
         
+        if(containerBox != NULL && strcmp( containerType, "moov" )==0)
+        {
+            readContainerBox(containerBox , mainStream, dataLength, filemanger);
+            boxModel->extractContainerBox(containerBox );
+            
+            strcpy(containerType, type);
+        }
         
-        
+        readDataBox(box, type , mainStream, dataLength, filemanger);
+        boxModel->extractDataBox(box , type);
 
-        processData(box, type , mainStream, dataLength, filemanger);
-        boxModel->extractData(box , type);
-        
     }
     
    
@@ -92,7 +110,8 @@ void Processer::start(FileManger * filemanger, std::ifstream * mainStream , BoxM
 
 
 ////////////////////////////------------------------------------------------ Export Data for each boxes.
-void Processer::processData(Box * box , char *type,std::ifstream * mainStream, size_t length , FileManger * filemanger)
+
+void Processer::readDataBox(Box * box , char *type,std::ifstream * mainStream, size_t length , FileManger * filemanger)
 {
     if( strcmp( type, "ftyp" ) == 0 )
     {
@@ -122,54 +141,59 @@ void Processer::processData(Box * box , char *type,std::ifstream * mainStream, s
             }
         }
     }
-    else if(strcmp( type, "moov") == 0 || strcmp( type, "trak" ) == 0 || strcmp( type, "mdia" ) == 0)
-    {
-        
-        char title[ 4 ];
-        
-        
-        memset( title, 0, 4 );
-        mainStream->read( title, 4 );
-        ((ContainerBox *)box)->mContainerBoxTitle.append(title);
-    }
     else if(strcmp( type, "mvhd") == 0)
     {
-        if( ((MVHD_BOX *)box)->mVersion == 1 )
-        {
-            ((MVHD_BOX *)box)->mCreationTime     = filemanger->readBigEndianUnsignedLong();
-            ((MVHD_BOX *)box)->mModificationTime = filemanger->readBigEndianUnsignedLong();
-            ((MVHD_BOX *)box)->mTimeScale        = filemanger->readBigEndianUnsignedInteger();
-            ((MVHD_BOX *)box)->mDuration        =  filemanger->readBigEndianUnsignedLong();
-            ((MVHD_BOX *)box)->mRate            =  filemanger->readBigEndianFixedPoint( 16, 16 );
-            ((MVHD_BOX *)box)->mVolume           = filemanger->readBigEndianFixedPoint( 8, 8 );
-            
-            filemanger->ignore( 10 );
-       
-            filemanger->ignore( 24 );
-            
-             ((MVHD_BOX *)box)->mNextTrackId = filemanger->readBigEndianUnsignedInteger();
-        }
-        else
-        {
-            ((MVHD_BOX *)box)->mCreationTime      = filemanger->readBigEndianUnsignedInteger();
-            ((MVHD_BOX *)box)->mModificationTime = filemanger->readBigEndianUnsignedInteger();
-            ((MVHD_BOX *)box)->mTimeScale        = filemanger->readBigEndianUnsignedInteger();
-            ((MVHD_BOX *)box)->mDuration         = filemanger->readBigEndianUnsignedInteger();
-            ((MVHD_BOX *)box)->mRate             = filemanger->readBigEndianFixedPoint( 16, 16 );
-            ((MVHD_BOX *)box)->mVolume           = filemanger->readBigEndianFixedPoint( 8, 8 );
-            
-            filemanger->ignore( 10 );
-            filemanger->readMatrix( &( ((MVHD_BOX *)box)->mMatrix ) );
-            filemanger->ignore( 24 );
-            
-            ((MVHD_BOX *)box)->mNextTrackId = filemanger->readBigEndianUnsignedInteger();
-        }
+////        Full_BOX::->processData(filemanger, length);
+//         //((Full_BOX *)box)processData( filemanger, length );
+//        
+//        if( ((MVHD_BOX *)box)->mVersion == 1 )
+//        {
+//            ((MVHD_BOX *)box)->mCreationTime     = filemanger->readBigEndianUnsignedLong();
+//            ((MVHD_BOX *)box)->mModificationTime = filemanger->readBigEndianUnsignedLong();
+//            ((MVHD_BOX *)box)->mTimeScale        = filemanger->readBigEndianUnsignedInteger();
+//            ((MVHD_BOX *)box)->mDuration        =  filemanger->readBigEndianUnsignedLong();
+//            ((MVHD_BOX *)box)->mRate            =  filemanger->readBigEndianFixedPoint( 16, 16 );
+//            ((MVHD_BOX *)box)->mVolume           = filemanger->readBigEndianFixedPoint( 8, 8 );
+//            
+//            filemanger->ignore( 10 );
+//       
+//            filemanger->ignore( 24 );
+//            
+//             ((MVHD_BOX *)box)->mNextTrackId = filemanger->readBigEndianUnsignedInteger();
+//        }
+//        else
+//        {
+//            ((MVHD_BOX *)box)->mCreationTime      = filemanger->readBigEndianUnsignedInteger();
+//            ((MVHD_BOX *)box)->mModificationTime = filemanger->readBigEndianUnsignedInteger();
+//            ((MVHD_BOX *)box)->mTimeScale        = filemanger->readBigEndianUnsignedInteger();
+//            ((MVHD_BOX *)box)->mDuration         = filemanger->readBigEndianUnsignedInteger();
+//            ((MVHD_BOX *)box)->mRate             = filemanger->readBigEndianFixedPoint( 16, 16 );
+//            ((MVHD_BOX *)box)->mVolume           = filemanger->readBigEndianFixedPoint( 8, 8 );
+//            
+//            filemanger->ignore( 10 );
+//            filemanger->readMatrix( &( ((MVHD_BOX *)box)->mMatrix ) );
+//            filemanger->ignore( 24 );
+//            
+//            ((MVHD_BOX *)box)->mNextTrackId = filemanger->readBigEndianUnsignedInteger();
+//        }
     }
+    
     else if(strcmp( type, "mdhd") == 0 )
     {
+        
+        uint32_t data;
+        
+        ( void )length;
+        
+        data = filemanger->readBigEndianUnsignedInteger();
+        
+        
+        ((MVHD_BOX *)box)->_version = data >> 24;
+        ((MVHD_BOX *)box)->_flags   = data & 0x00FFFFFF;
+        
         size_t parsedLength;
         
-       // FullBox::processData( stream, length );
+       
         
         if( ((MDHD_BOX *)box)->mVersion == 1 )
         {
@@ -191,27 +215,47 @@ void Processer::processData(Box * box , char *type,std::ifstream * mainStream, s
         filemanger->ignore( length - parsedLength );
     }
     
-    else if(strcmp( type, "tkhd") == 0 )
-    {
-        char title[ 4 ];
-        memset( title, 0, 4 );
-        mainStream->read( title, 4 );
-        ((TKHD_BOX *)box)->mType.append(title);
-    }
-    else if(strcmp( type, "tref") == 0 )
-    {
-        char title[ 4 ];
-        memset( title, 0, 4 );
-        mainStream->read( title, 4 );
-        ((TREF_BOX *)box)->mType.append(title);
-    }
-    
+//
+//    else if(strcmp( type, "tkhd") == 0 )
+//    {
+//        char title[ 4 ];
+//        memset( title, 0, 4 );
+//        mainStream->read( title, 4 );
+//        ((TKHD_BOX *)box)->mType.append(title);
+//    }
+//    else if(strcmp( type, "tref") == 0 )
+//    {
+//        char title[ 4 ];
+//        memset( title, 0, 4 );
+//        mainStream->read( title, 4 );
+//        ((TREF_BOX *)box)->mType.append(title);
+//    }
+//    else{
+//        
+//        char title[ 4 ];
+//        memset( title, 0, 4 );
+//        mainStream->read( title, 4 );
+//        ((UNKNON_BOX *)box)->mType.append(type);
+//    }
+//    
     
 };
 
 
 /////////////////////////////-----------------------------------/////////////////////////////////////////////ProcessDATA
 
-
+void Processer::readContainerBox(ContainerBox * box ,std::ifstream * mainStream, size_t length , FileManger * filemanger)
+{
+    char *  type = box->mContainerBoxTitle;
+    if(strcmp( type, "moov") == 0 || strcmp( type, "trak" ) == 0 || strcmp( type, "mdia" ) == 0)
+    {
+        
+        char title[ 4 ];
+        
+        
+        memset( title, 0, 4 );
+        mainStream->read( title, 4 );
+    }
+}
 
 
