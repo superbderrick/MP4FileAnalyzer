@@ -22,31 +22,22 @@
 #include "BoxModel.h"
 
 // Boxes data headers
-#include "FTYP_BOX.h"
-//#include "ContainerBox.h"
 
 
-#include "MDHD_BOX.h"
-
-#include "Full_BOX.h"
-
-class Processer
+class Parser
 {
     
 private:
-   
-    void readDataBox(Box * box , char *type,std::ifstream * mainStream, size_t length , StreamManger * filemanger);
-    void readContainerBox(ContainerBox * box ,std::ifstream * mainStream, size_t length , StreamManger * filemanger);
     
 public:
-    Processer();
-    ~Processer();
+    Parser();
+    ~Parser();
     
     
     
     std::string getDescription( std::string _majorBrand , uint32_t _minorVersion );
     
-    void start(StreamManger * filemanger, std::ifstream * mainStream , BoxModel * boxModel);
+    uint start(std::ifstream * mainStream , BoxModel * boxModel);
     
 };
 

@@ -8,23 +8,20 @@
 
 #include "Box.h"
 
-Box::Box( void )
-: mType("box")
-, mSize(0)
-{}
+Box::Box()
+{
+    
+}
+
+Box::Box(int size , std::string type , int offset)
+{
+    mSize = size;
+    mType = type;
+    mOffset = offset;
+}
 
 Box::~Box( void )
-{}
-//
-//void Box::processData( FileManger * stream, size_t length )
-//{
-//    uint32_t data;
-//    
-//    ( void )length;
-//    
-//    //data = stream->readBigEndianUnsignedInteger();
-//    data = 0;
-//    
-//    this->_version = data >> 24;
-//    this->_flags   = data & 0x00FFFFFF;
-//}
+{
+    
+}
+

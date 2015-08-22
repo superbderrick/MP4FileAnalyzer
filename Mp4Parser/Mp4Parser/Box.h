@@ -13,30 +13,20 @@
 #include <string.h>
 #include <stdio.h>
 #include <fstream>
-#include "StreamManger.h"
-
-
-
 
 
 class Box {
     
-protected:
-
 public:
     
     std::string mType;
     int mSize;
-    std::string mParsingType;
-    
-    uint8_t  _version;
-    uint32_t _flags;
+    int mOffset;
     
     Box();
-    virtual ~Box( void );
-//    void processData( FileManger * stream, size_t length );
+    Box(int size , std::string type , int offset);
     
-   
+    ~Box( );
     
 };
 

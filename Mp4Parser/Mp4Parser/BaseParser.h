@@ -11,19 +11,15 @@
 
 #include <stdio.h>
 #include "StreamManger.h"
-#include "Processer.h"
+#include "Parser.h"
 
 
 
 class BaseParser
 {
-    //Fundamental Compononet.
-    
-    public :
+public :
     StreamManger *  fileManger;
-    Processer  *      processer;
-    
-    //    Fundamental Compononet.
+    Parser  *      parser;
 };
 
 

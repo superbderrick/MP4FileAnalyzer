@@ -18,24 +18,23 @@
 #include <map>
 
 #include <sstream>
-#include "FTYP_BOX.h"
-#include "MDHD_BOX.h"
-#include "ContainerBox.h"
+
 
 class BoxModel
 {
 public:
-    std::multimap< char *, std::string >  boxDataMap;
+   std::vector<Box *> BoxesVector;
+ //   std::multimap< char *, std::string >  boxDataMap;
     
     std::multimap< std::string, std::string > _children;
     BoxModel();
     ~BoxModel();
     
     void  extractDataBox( Box * box , char *type );
-    void  extractContainerBox( ContainerBox *box );
+
     
     bool hasChildren( void );
-    unsigned int numberOfChildren( void );
+   // unsigned int numberOfChildren( void );
     
     
 };

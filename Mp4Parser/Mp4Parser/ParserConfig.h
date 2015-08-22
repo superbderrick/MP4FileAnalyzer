@@ -13,7 +13,9 @@
 #endif
 
 #define BOXTYPE_NAME_SIZE 5
+
 #define BOXTYPE_BASIC_SIZE 4
-
-
 #define BOXTYPE_EXTEND_SIZE 1
+
+#define SUCCESS 1
+#define FAILURE 0

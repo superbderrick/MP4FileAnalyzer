@@ -15,7 +15,6 @@
 
 #include "math.h"
 #include "stdint.h"
-#include "types.h"
 
 //
 
@@ -49,7 +48,7 @@ public:
     
     std::istream & ignore( std::streamsize n = 1, int delim = EOF );
     
-    void readMatrix( matrix * m );
+//    void readMatrix( matrix * m );
     
    std::string * readBigEndianISO639Code( void );
 };

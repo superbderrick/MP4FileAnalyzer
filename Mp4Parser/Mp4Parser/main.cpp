@@ -11,10 +11,6 @@
 #include "UtilManger.h"
 #include "Mp4Parser.h"
 
-// default valuse
-
-int Option::option_num = 3;
-
 
 int main(int argc, const char * argv[]) {
     
@@ -27,14 +23,11 @@ int main(int argc, const char * argv[]) {
         std::cout << "Usage: " << argv[ 0 ] << " FILENAME\n";
     }
     
-     strcpy(fileName,argv[1]);
-    
-   
+     //strcpy(fileName,argv[1]);
     
     Mp4Parser * mp4Parser = new Mp4Parser(fileName);
     
     mp4Parser->start();
-    
     
     return 0;
 }

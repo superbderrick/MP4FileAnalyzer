@@ -24,27 +24,27 @@ void BoxModel::extractDataBox(Box *box ,char *type) {
     std::ostringstream stringStream;
     if(strcmp(type, "ftyp") == 0 )
     {
-        std::string boxData;
-        std::string * eachData;
-        std::vector< std::string * >::iterator boxVector;
-       
-        
-        stringStream << "MP4 Box:           " << type << "\n";
-        stringStream << "                      - Major brand:       " <<  ((FTYP_BOX *)box)->_majorBrand << "\n";
-        stringStream << "                      - Minor version:     " <<  ((FTYP_BOX *)box)->_minorVersion << "\n";
-        stringStream << "                      - Compatible brands: \n";
-        
-        boxData = stringStream.str();
-        
-        for( boxVector =  ((FTYP_BOX *)box)->_compatibleBrands.begin(); boxVector != ((FTYP_BOX *)box)->_compatibleBrands.end(); ++boxVector )
-        {
-            eachData = *( boxVector );
-            
-            stringStream << "                          - " << *( eachData ) << "\n";
-        }
-        
-        final = stringStream.str();
-        
+//        std::string boxData;
+//        std::string * eachData;
+//        std::vector< std::string * >::iterator boxVector;
+//       
+//        
+//        stringStream << "MP4 Box:           " << type << "\n";
+//        stringStream << "                      - Major brand:       " <<  ((FTYP_BOX *)box)->_majorBrand << "\n";
+//        stringStream << "                      - Minor version:     " <<  ((FTYP_BOX *)box)->_minorVersion << "\n";
+//        stringStream << "                      - Compatible brands: \n";
+//        
+//        boxData = stringStream.str();
+//        
+//        for( boxVector =  ((FTYP_BOX *)box)->_compatibleBrands.begin(); boxVector != ((FTYP_BOX *)box)->_compatibleBrands.end(); ++boxVector )
+//        {
+//            eachData = *( boxVector );
+//            
+//            stringStream << "                          - " << *( eachData ) << "\n";
+//        }
+//        
+//        final = stringStream.str();
+//        
     }
 
     else if (strcmp(type, "mvhd") == 0) {
@@ -87,11 +87,11 @@ void BoxModel::extractDataBox(Box *box ,char *type) {
     else if (strcmp(type, "mdhd") == 0) {
         
         stringStream << "MP4 Box:           " <<  type << "\n";
-        stringStream << "                      - Creation time:     " << ((MDHD_BOX *)box)->mCreationTime     << "\n";
-        stringStream << "                      - Modification time: " << ((MDHD_BOX *)box)->mModificationTime << "\n";
-        stringStream << "                      - Time scale:        " << ((MDHD_BOX *)box)->mTimeScale        << "\n";
-        stringStream << "                      - Duration:          " << ((MDHD_BOX *)box)->mDuration         << "\n";
-        stringStream << "                      - Language:          " << ((MDHD_BOX *)box)->mLanguage     << "\n";
+//        stringStream << "                      - Creation time:     " << ((MDHD_BOX *)box)->mCreationTime     << "\n";
+//        stringStream << "                      - Modification time: " << ((MDHD_BOX *)box)->mModificationTime << "\n";
+//        stringStream << "                      - Time scale:        " << ((MDHD_BOX *)box)->mTimeScale        << "\n";
+//        stringStream << "                      - Duration:          " << ((MDHD_BOX *)box)->mDuration         << "\n";
+//        stringStream << "                      - Language:          " << ((MDHD_BOX *)box)->mLanguage     << "\n";
         
         final =stringStream.str();
         
@@ -100,26 +100,26 @@ void BoxModel::extractDataBox(Box *box ,char *type) {
         return ;
     }
     
-    boxDataMap.insert(std::pair< char *, std::string >(type, final ) );
+//    boxDataMap.insert(std::pair< char *, std::string >(type, final ) );
 
     
 };
 
-void BoxModel::extractContainerBox(ContainerBox *box ) {
-    std::string final ;
-    std::ostringstream stringStream;
-    
-     if (strcmp(box->mContainerBoxTitle, "moov") == 0) {
-        
-        stringStream << "MP4 Box:  Container box         " << box->mContainerBoxTitle << "\n";
-        
-        
-    }
-    
-    final =stringStream.str();
-    boxDataMap.insert(std::pair< char *, std::string >(box->mContainerBoxTitle, final ) );
-    
-}
+//void BoxModel::extractContainerBox(ContainerBox *box ) {
+//    std::string final ;
+//    std::ostringstream stringStream;
+//    
+//     if (strcmp(box->mContainerBoxTitle, "moov") == 0) {
+//        
+//        stringStream << "MP4 Box:  Container box         " << box->mContainerBoxTitle << "\n";
+//        
+//        
+//    }
+//    
+//    final =stringStream.str();
+//    boxDataMap.insert(std::pair< char *, std::string >(box->mContainerBoxTitle, final ) );
+//    
+//}
 
 bool BoxModel::hasChildren(void)
 {
@@ -127,10 +127,10 @@ bool BoxModel::hasChildren(void)
 };
 
 
-unsigned int  BoxModel::numberOfChildren(void)
-{
-
-    return boxDataMap.size();
-};
+//unsigned int  BoxModel::numberOfChildren(void)
+//{
+//
+//  //  return boxDataMap.size();
+//};
 
 
