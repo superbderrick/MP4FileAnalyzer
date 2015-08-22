@@ -24,7 +24,7 @@ public:
     TextBuilder();
     ~TextBuilder();
     
-    void  setBoxData(BoxModel * boxData);
+    uint  makeTextfile(BoxModel * boxData);
 };
 
 

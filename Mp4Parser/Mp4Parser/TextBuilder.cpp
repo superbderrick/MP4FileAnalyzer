@@ -16,21 +16,21 @@ TextBuilder::~TextBuilder(){
     
 };
 
-void TextBuilder::setBoxData(BoxModel * boxdata){
+uint TextBuilder::makeTextfile(BoxModel * boxdata){
     
     std::string s;
     std::multimap< char *, std::string >::iterator it;
     std::ofstream outFile("output.txt");
-
-    for( it = boxdata->boxDataMap.begin(); it != boxdata->boxDataMap .end(); ++it )
-    {
-        //debug
-      //  std::cout << it->second<< std::endl;
-        outFile << it->second<<std::endl;
-    }
     
+    for (std::vector<int>::size_type i = 0; i < boxdata->BoxesVector.size(); ++i)
+    {
+        outFile << " Type: "  << boxdata->BoxesVector[i]->mType << std::endl;
+        outFile << " Offset: " << boxdata->BoxesVector[i]->mOffset << std::endl;
+        outFile << " Size:  " << boxdata->BoxesVector[i]->mSize<< " \n " << std::endl;
+    }
     outFile.close();
-
+    
+    return 1;
     
 }
 

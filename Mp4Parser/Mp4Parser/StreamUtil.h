@@ -10,17 +10,18 @@
 #define __Mp4Parser__StreamUtil__
 
 #include <stdio.h>
+#include <fstream>
+#include <iostream>
+#include <sstream>
 
 #endif /* defined(__Mp4Parser__StreamUtil__) */
 
 class StreamUtil
 {
 public:
-    
     StreamUtil();
     ~StreamUtil();
     
-    
-    
-    
+    uint32_t readBigEndianUnsignedInteger(std::ifstream * file);
+    char * readBoxType(std::ifstream * file);
 };

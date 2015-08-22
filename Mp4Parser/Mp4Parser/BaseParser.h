@@ -10,7 +10,6 @@
 #define __Mp4Parser__BaseParser__
 
 #include <stdio.h>
-#include "StreamManger.h"
 #include "Parser.h"
 
 
@@ -18,7 +17,6 @@
 class BaseParser
 {
 public :
-    StreamManger *  fileManger;
     Parser  *      parser;
 };
 

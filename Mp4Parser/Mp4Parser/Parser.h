@@ -17,10 +17,10 @@
 #include "vector"
 #include "ParserConfig.h"
 #include "Box.h"
-#include "StreamManger.h"
 #include "TextBuilder.h"
 #include "BoxModel.h"
 
+#include "StreamUtil.h"
 // Boxes data headers
 
 
@@ -28,11 +28,11 @@ class Parser
 {
     
 private:
+    StreamUtil * streamUtil;
     
 public:
     Parser();
     ~Parser();
-    
     
     
     std::string getDescription( std::string _majorBrand , uint32_t _minorVersion );
