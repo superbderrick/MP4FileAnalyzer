@@ -15,12 +15,11 @@
 
 #include "math.h"
 #include "stdint.h"
-#include "FIleManger.h"
 #include "types.h"
 
 //
 
-class FileManger
+class StreamManger
 {
 public:
     char * mFileName;
@@ -28,8 +27,8 @@ public:
     
      std::ifstream stream;
     
-    FileManger(char * fileName ,std::ifstream * mainStream );
-    ~FileManger();
+    StreamManger(char * fileName ,std::ifstream * mainStream );
+    StreamManger();
     
     uint32_t readBigEndianUnsignedInteger(std::ifstream * file);
     uint32_t readBigEndianUnsignedInteger();

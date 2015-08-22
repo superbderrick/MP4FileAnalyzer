@@ -18,7 +18,7 @@ Full_BOX::~Full_BOX()
     
 };
 
-void Full_BOX::processData(FileManger  * stream, size_t length)
+void Full_BOX::processData(StreamManger  * stream, size_t length)
 {
     
 };

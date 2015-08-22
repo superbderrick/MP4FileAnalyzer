@@ -13,7 +13,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <fstream>
-#include "FIleManger.h"
+#include "StreamManger.h"
 
 
 

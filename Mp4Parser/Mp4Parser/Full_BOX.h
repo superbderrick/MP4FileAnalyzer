@@ -11,7 +11,7 @@
 
 #include <stdio.h>
 #include "Box.h"
-#include "FIleManger.h"
+#include "StreamManger.h"
 
 #endif /* defined(__Mp4Parser__Full_BOX__) */
 
@@ -25,5 +25,5 @@ public:
     Full_BOX();
     ~Full_BOX();
     
-     void processData(FileManger  * stream, size_t length );
+     void processData(StreamManger  * stream, size_t length );
 };

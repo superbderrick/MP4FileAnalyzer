@@ -13,26 +13,14 @@
 Mp4Parser::Mp4Parser(char * fileName)
 {
     
-    std::ifstream inFile("test1.mp4",std::ios::binary);
-    
-    fileManger = new FileManger(fileName ,&inFile);
-    
+    //    inFile (fileName,std::ios::binary);
+    inFile = new std::ifstream(fileName,std::ios::binary);
+    fileManger = new StreamManger(fileName ,inFile);
     processer = new Processer;
-    
     mBuilder = new TextBuilder;
-    
     mBoxModel = new BoxModel;
     
-    
-   
-
-    
-    processer->start(fileManger, &inFile , mBoxModel);
-    
-  
-    
-    mBuilder->setBoxData(mBoxModel);
-   
+    std::cout << fileName << std::endl;
     
 };
 
@@ -44,6 +32,15 @@ Mp4Parser::Mp4Parser()
     delete mBuilder;
     delete mBoxModel;
 };
+
+void Mp4Parser::start()
+{
+    processer->start(fileManger, inFile , mBoxModel);
+    
+    // callback
+    mBuilder->setBoxData(mBoxModel);
+};
+
 
 
 

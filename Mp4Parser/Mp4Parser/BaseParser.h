@@ -10,7 +10,7 @@
 #define __Mp4Parser__BaseParser__
 
 #include <stdio.h>
-#include "FIleManger.h"
+#include "StreamManger.h"
 #include "Processer.h"
 
 
@@ -20,7 +20,7 @@ class BaseParser
     //Fundamental Compononet.
     
     public :
-    FileManger *  fileManger;
+    StreamManger *  fileManger;
     Processer  *      processer;
     
     //    Fundamental Compononet.

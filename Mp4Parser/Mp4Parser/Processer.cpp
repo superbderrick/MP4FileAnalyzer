@@ -25,7 +25,7 @@ Processer::~Processer()
 
 
 
-void Processer::start(FileManger * filemanger, std::ifstream * mainStream , BoxModel * boxModel)
+void Processer::start(StreamManger * filemanger, std::ifstream * mainStream , BoxModel * boxModel)
 {
     uint32_t             length;
     uint64_t             dataLength;
@@ -111,7 +111,7 @@ void Processer::start(FileManger * filemanger, std::ifstream * mainStream , BoxM
 
 ////////////////////////////------------------------------------------------ Export Data for each boxes.
 
-void Processer::readDataBox(Box * box , char *type,std::ifstream * mainStream, size_t length , FileManger * filemanger)
+void Processer::readDataBox(Box * box , char *type,std::ifstream * mainStream, size_t length , StreamManger * filemanger)
 {
     if( strcmp( type, "ftyp" ) == 0 )
     {
@@ -215,7 +215,7 @@ void Processer::readDataBox(Box * box , char *type,std::ifstream * mainStream, s
         filemanger->ignore( length - parsedLength );
     }
     
-//
+
 //    else if(strcmp( type, "tkhd") == 0 )
 //    {
 //        char title[ 4 ];
@@ -244,7 +244,7 @@ void Processer::readDataBox(Box * box , char *type,std::ifstream * mainStream, s
 
 /////////////////////////////-----------------------------------/////////////////////////////////////////////ProcessDATA
 
-void Processer::readContainerBox(ContainerBox * box ,std::ifstream * mainStream, size_t length , FileManger * filemanger)
+void Processer::readContainerBox(ContainerBox * box ,std::ifstream * mainStream, size_t length , StreamManger * filemanger)
 {
     char *  type = box->mContainerBoxTitle;
     if(strcmp( type, "moov") == 0 || strcmp( type, "trak" ) == 0 || strcmp( type, "mdia" ) == 0)

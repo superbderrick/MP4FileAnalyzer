@@ -20,9 +20,20 @@ int main(int argc, const char * argv[]) {
     
     UtilManger * utilManger = new UtilManger;
     
-    Mp4Parser * mp4Parser = new Mp4Parser("test1.mp4");
+    char fileName[10];
     
-  //  mp4Parser->start();
+    if( argc != 2 )
+    {
+        std::cout << "Usage: " << argv[ 0 ] << " FILENAME\n";
+    }
+    
+     strcpy(fileName,argv[1]);
+    
+   
+    
+    Mp4Parser * mp4Parser = new Mp4Parser(fileName);
+    
+    mp4Parser->start();
     
     
     return 0;

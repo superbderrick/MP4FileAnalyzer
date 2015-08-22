@@ -6,21 +6,21 @@
 //  Copyright (c) 2015 sensation. All rights reserved.
 //
 
-#include "FIleManger.h"
+#include "StreamManger.h"
 
-FileManger::FileManger(char * fileName ,std::ifstream * mainStream)
+StreamManger::StreamManger(char * fileName ,std::ifstream * mainStream)
 {
     mFileStream = mainStream;
     
 }
 
-FileManger::~FileManger()
+StreamManger::StreamManger()
 {
     
 }
 
 
-uint32_t FileManger::readBigEndianUnsignedInteger(std::ifstream * file)
+uint32_t StreamManger::readBigEndianUnsignedInteger(std::ifstream * file)
 {
     
     uint8_t  c[ 4 ];
@@ -36,7 +36,7 @@ uint32_t FileManger::readBigEndianUnsignedInteger(std::ifstream * file)
     return n;
 }
 
-uint32_t FileManger::readBigEndianUnsignedInteger()
+uint32_t StreamManger::readBigEndianUnsignedInteger()
 {
     
     uint8_t  block[ 4 ];
@@ -53,7 +53,7 @@ uint32_t FileManger::readBigEndianUnsignedInteger()
     return wholeblock;
 }
 
-uint32_t FileManger::readLittleEndianUnsignedInteger( void )
+uint32_t StreamManger::readLittleEndianUnsignedInteger( void )
 {
     uint8_t  c[ 4 ];
     uint32_t n;
@@ -68,7 +68,7 @@ uint32_t FileManger::readLittleEndianUnsignedInteger( void )
     return n;
 };
 
-uint64_t FileManger::readBigEndianUnsignedLong( void )
+uint64_t StreamManger::readBigEndianUnsignedLong( void )
 {
     uint8_t  c[ 8 ];
     uint64_t n;
@@ -90,7 +90,7 @@ uint64_t FileManger::readBigEndianUnsignedLong( void )
 
 
 
-float FileManger::readBigEndianFixedPoint( unsigned int integerLength, unsigned int fractionalLength )
+float StreamManger::readBigEndianFixedPoint( unsigned int integerLength, unsigned int fractionalLength )
 {
     uint32_t n;
     unsigned int integer;
@@ -113,7 +113,7 @@ float FileManger::readBigEndianFixedPoint( unsigned int integerLength, unsigned 
     return integer + fractional;
 }
 
-float FileManger::readLittleEndianFixedPoint( unsigned int integerLength, unsigned int fractionalLength )
+float StreamManger::readLittleEndianFixedPoint( unsigned int integerLength, unsigned int fractionalLength )
 {
     uint32_t n;
     unsigned int integer;
@@ -136,7 +136,7 @@ float FileManger::readLittleEndianFixedPoint( unsigned int integerLength, unsign
     return integer + fractional;
 }
 
-uint16_t FileManger::readBigEndianUnsignedShort( void )
+uint16_t StreamManger::readBigEndianUnsignedShort( void )
 {
     uint8_t  c[ 2 ];
     uint16_t n;
@@ -149,7 +149,7 @@ uint16_t FileManger::readBigEndianUnsignedShort( void )
     return n;
 }
 
-uint16_t FileManger::readLittleEndianUnsignedShort( void )
+uint16_t StreamManger::readLittleEndianUnsignedShort( void )
 {
     uint8_t  c[ 2 ];
     uint16_t n;
@@ -164,20 +164,20 @@ uint16_t FileManger::readLittleEndianUnsignedShort( void )
 
 
 
-std::istream & FileManger::readBoxType(char * s, std::streamsize streamSize )
+std::istream & StreamManger::readBoxType(char * s, std::streamsize streamSize )
 {
     return mFileStream->read( s,streamSize);
   
     
 }
 
-std::istream & FileManger::ignore( std::streamsize n, int delim )
+std::istream & StreamManger::ignore( std::streamsize n, int delim )
 {
     return stream.ignore( n, delim );
 }
 
 
-void FileManger::readMatrix( matrix * m )
+void StreamManger::readMatrix( matrix * m )
 {
     m->a = this->readBigEndianFixedPoint( 16, 16 );
     m->b = this->readBigEndianFixedPoint( 16, 16 );
@@ -190,7 +190,7 @@ void FileManger::readMatrix( matrix * m )
     m->w = this->readBigEndianFixedPoint(  2, 30 );
 }
 
-std::string * FileManger::readBigEndianISO639Code( void )
+std::string * StreamManger::readBigEndianISO639Code( void )
 {
     unsigned char c1;
     unsigned char c2;

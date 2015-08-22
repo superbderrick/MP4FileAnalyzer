@@ -17,7 +17,7 @@
 #include "vector"
 #include "ParserConfig.h"
 #include "Box.h"
-#include "FIleManger.h"
+#include "StreamManger.h"
 #include "TextBuilder.h"
 #include "BoxModel.h"
 
@@ -36,8 +36,8 @@ class Processer
     
 private:
    
-    void readDataBox(Box * box , char *type,std::ifstream * mainStream, size_t length , FileManger * filemanger);
-    void readContainerBox(ContainerBox * box ,std::ifstream * mainStream, size_t length , FileManger * filemanger);
+    void readDataBox(Box * box , char *type,std::ifstream * mainStream, size_t length , StreamManger * filemanger);
+    void readContainerBox(ContainerBox * box ,std::ifstream * mainStream, size_t length , StreamManger * filemanger);
     
 public:
     Processer();
@@ -47,7 +47,7 @@ public:
     
     std::string getDescription( std::string _majorBrand , uint32_t _minorVersion );
     
-    void start(FileManger * filemanger, std::ifstream * mainStream , BoxModel * boxModel);
+    void start(StreamManger * filemanger, std::ifstream * mainStream , BoxModel * boxModel);
     
 };
 

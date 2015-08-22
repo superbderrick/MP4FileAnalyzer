@@ -24,7 +24,7 @@ class Mp4Parser : BaseParser
 private:
     TextBuilder * mBuilder;
     BoxModel * mBoxModel;
-
+    std::ifstream * inFile;
     
 public:
     Mp4Parser(char * fileName);
@@ -32,4 +32,5 @@ public:
     
     // parser start.
     void start();
+    
 };
