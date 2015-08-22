@@ -73,18 +73,7 @@ void Processer::start(StreamManger * filemanger, std::ifstream * mainStream , Bo
         {
             box = ( FTYP_BOX * )( new FTYP_BOX () );
         }
-        else if(strcmp( type, "mvhd" ) == 0) {
-            box = ( MVHD_BOX * )( new MVHD_BOX () );
-        }
-        else if(strcmp( type, "tkhd" ) == 0) {
-            box = ( TKHD_BOX * )( new TKHD_BOX () );
-        }
-        else if(strcmp( type, "tref" ) == 0) {
-            box = ( TREF_BOX * )( new TREF_BOX () );
-        }
-        else if(strcmp( type, "mdhd" ) == 0) {
-            box = ( MDHD_BOX * )( new MDHD_BOX () );
-        }
+     
         else
         {
            // box = ( UNKNON_BOX * )( new UNKNON_BOX (type) );
@@ -178,42 +167,7 @@ void Processer::readDataBox(Box * box , char *type,std::ifstream * mainStream, s
 //        }
     }
     
-    else if(strcmp( type, "mdhd") == 0 )
-    {
-        
-        uint32_t data;
-        
-        ( void )length;
-        
-        data = filemanger->readBigEndianUnsignedInteger();
-        
-        
-        ((MVHD_BOX *)box)->_version = data >> 24;
-        ((MVHD_BOX *)box)->_flags   = data & 0x00FFFFFF;
-        
-        size_t parsedLength;
-        
-       
-        
-        if( ((MDHD_BOX *)box)->mVersion == 1 )
-        {
-            parsedLength            = 30;
-            ((MDHD_BOX *)box)->mCreationTime     = filemanger->readBigEndianUnsignedLong();
-            ((MDHD_BOX *)box)->mModificationTime = filemanger->readBigEndianUnsignedLong();
-        }
-        else
-        {
-            parsedLength            = 22;
-             ((MDHD_BOX *)box)->mCreationTime     = filemanger->readBigEndianUnsignedInteger();
-             ((MDHD_BOX *)box)->mModificationTime = filemanger->readBigEndianUnsignedInteger();
-        }
-        
-         ((MDHD_BOX *)box)->mTimeScale = filemanger->readBigEndianUnsignedInteger();
-         ((MDHD_BOX *)box)->mDuration  = filemanger->readBigEndianUnsignedInteger();
-         ((MDHD_BOX *)box)->mLanguage  = filemanger->readBigEndianISO639Code();
-        
-        filemanger->ignore( length - parsedLength );
-    }
+
     
 
 //    else if(strcmp( type, "tkhd") == 0 )

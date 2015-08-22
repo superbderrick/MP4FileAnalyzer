@@ -8,12 +8,9 @@
 
 #include "Mp4Parser.h"
 
-
-
 Mp4Parser::Mp4Parser(char * fileName)
 {
     
-    //    inFile (fileName,std::ios::binary);
     inFile = new std::ifstream(fileName,std::ios::binary);
     fileManger = new StreamManger(fileName ,inFile);
     processer = new Processer;
