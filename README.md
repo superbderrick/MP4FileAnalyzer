@@ -25,5 +25,5 @@ by Derrick
 
 - http://sensationaljy.tistory.com/
 
-- kr.linkedin.com/in/sensational
+- kr.linkedin.com/in/sensational/
 
