@@ -22,7 +22,7 @@ Mp4Parser::~Mp4Parser()
 void Mp4Parser::start()
 {
     int result = 0;
-    if (parser->start(inputFile, mBoxModel) == 1)
+    if (mParser->start(inputFile, mBoxModel) == 1)
     {
         result = 1;
         std::cout << SUCCESS << std::endl;
@@ -47,14 +47,14 @@ void Mp4Parser::start()
 void Mp4Parser::init(char * fileName)
 {
     inputFile = new std::ifstream(fileName,std::ios::binary);
-    parser = new Parser;
+    mParser = new Parser;
     mBuilder = new TextBuilder;
     mBoxModel = new BoxModel;
 };
 
 void Mp4Parser::deletelibary()
 {
-    delete parser;
+    delete mParser;
     delete mBuilder;
     delete mBoxModel;
     delete inputFile;

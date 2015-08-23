@@ -60,20 +60,18 @@ uint Parser::start(std::ifstream * fileStream , BoxModel * boxModel)
             || strcmp(type, "trak") == 0
             )
         {
-            box = new Box(length, type, offset);
-            offset = offset +8;
-            fileStream->seekg((offset));
+            offset = offset +CHAILD_DATA;
         }
         else
         {
-            box = new Box(length, type, offset);
             offset = offset +length;
-            fileStream->seekg(offset);
         }
         
+        box = new Box(length, type, offset);
         boxModel->BoxesVector.push_back(box);
         
-        
+        fileStream->seekg(offset);
+
     }
 
     return 1;

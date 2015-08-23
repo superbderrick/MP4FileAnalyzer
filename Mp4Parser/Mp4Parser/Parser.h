@@ -29,13 +29,9 @@ class Parser
     
 private:
     StreamUtil * streamUtil;
-    
 public:
     Parser();
     ~Parser();
-    
-    
-    std::string getDescription( std::string _majorBrand , uint32_t _minorVersion );
     
     uint start(std::ifstream * mainStream , BoxModel * boxModel);
     

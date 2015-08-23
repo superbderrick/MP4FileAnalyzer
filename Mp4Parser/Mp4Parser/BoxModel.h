@@ -24,19 +24,9 @@ class BoxModel
 {
 public:
    std::vector<Box *> BoxesVector;
- //   std::multimap< char *, std::string >  boxDataMap;
     
-    std::multimap< std::string, std::string > _children;
     BoxModel();
     ~BoxModel();
-    
-    void  extractDataBox( Box * box , char *type );
-
-    
-    bool hasChildren( void );
-   // unsigned int numberOfChildren( void );
-    
-    
 };
 
 

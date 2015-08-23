@@ -18,17 +18,13 @@ TextBuilder::~TextBuilder(){
 
 uint TextBuilder::makeTextfile(BoxModel * boxdata){
     
-    std::string s;
-    std::multimap< char *, std::string >::iterator it;
     std::ofstream outFile("output.txt");
     
     for (std::vector<int>::size_type i = 0; i < boxdata->BoxesVector.size(); ++i)
     {
         outFile << " Offset: " << boxdata->BoxesVector[i]->mOffset << std::endl;
         outFile << " Size:  " << boxdata->BoxesVector[i]->mSize << std::endl;
-        outFile << " Type: "  << boxdata->BoxesVector[i]->mType <<  " \n " << std::endl;
-        
-        
+        outFile << " Type: "  << boxdata->BoxesVector[i]->mType <<  " \n " << std::endl;        
     }
     outFile.close();
     

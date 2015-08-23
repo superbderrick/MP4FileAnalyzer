@@ -17,7 +17,7 @@
 class BaseParser
 {
 public :
-    Parser  *      parser;
+    Parser  *      mParser;
 };
 
 

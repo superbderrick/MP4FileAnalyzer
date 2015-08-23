@@ -19,3 +19,5 @@
 
 #define SUCCESS 1
 #define FAILURE 0
+
+#define CHAILD_DATA 8
