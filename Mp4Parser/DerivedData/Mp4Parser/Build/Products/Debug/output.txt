@@ -1,0 +1,432 @@
+ Offset: 0
+ Size:  24
+ Type: ftyp 
+ 
+ Offset: 24
+ Size:  584
+ Type: moov 
+ 
+ Offset: 32
+ Size:  108
+ Type: mvhd 
+ 
+ Offset: 140
+ Size:  0
+ Type: mvex 
+ 
+ Offset: 140
+ Size:  56
+ Type: mvex 
+ 
+ Offset: 148
+ Size:  16
+ Type: mehd 
+ 
+ Offset: 164
+ Size:  32
+ Type: trex 
+ 
+ Offset: 196
+ Size:  412
+ Type: trak 
+ 
+ Offset: 204
+ Size:  92
+ Type: tkhd 
+ 
+ Offset: 296
+ Size:  312
+ Type: mdia 
+ 
+ Offset: 304
+ Size:  32
+ Type: mdhd 
+ 
+ Offset: 336
+ Size:  45
+ Type: hdlr 
+ 
+ Offset: 381
+ Size:  227
+ Type: minf 
+ 
+ Offset: 389
+ Size:  36
+ Type: dinf 
+ 
+ Offset: 397
+ Size:  28
+ Type: dref 
+ 
+ Offset: 425
+ Size:  167
+ Type: stbl 
+ 
+ Offset: 433
+ Size:  91
+ Type: stsd 
+ 
+ Offset: 524
+ Size:  16
+ Type: stts 
+ 
+ Offset: 540
+ Size:  16
+ Type: stsc 
+ 
+ Offset: 556
+ Size:  20
+ Type: stsz 
+ 
+ Offset: 576
+ Size:  16
+ Type: stco 
+ 
+ Offset: 592
+ Size:  16
+ Type: smhd 
+ 
+ Offset: 608
+ Size:  116
+ Type: sidx 
+ 
+ Offset: 724
+ Size:  1820
+ Type: moof 
+ 
+ Offset: 732
+ Size:  16
+ Type: mfhd 
+ 
+ Offset: 748
+ Size:  1796
+ Type: traf 
+ 
+ Offset: 756
+ Size:  28
+ Type: tfhd 
+ 
+ Offset: 784
+ Size:  16
+ Type: tfdt 
+ 
+ Offset: 800
+ Size:  1744
+ Type: trun 
+ 
+ Offset: 2544
+ Size:  178764
+ Type: mdat 
+ 
+ Offset: 181308
+ Size:  1820
+ Type: moof 
+ 
+ Offset: 181316
+ Size:  16
+ Type: mfhd 
+ 
+ Offset: 181332
+ Size:  1796
+ Type: traf 
+ 
+ Offset: 181340
+ Size:  28
+ Type: tfhd 
+ 
+ Offset: 181368
+ Size:  16
+ Type: tfdt 
+ 
+ Offset: 181384
+ Size:  1744
+ Type: trun 
+ 
+ Offset: 183128
+ Size:  180179
+ Type: mdat 
+ 
+ Offset: 363307
+ Size:  100
+ Type: moof 
+ 
+ Offset: 363315
+ Size:  16
+ Type: mfhd 
+ 
+ Offset: 363331
+ Size:  76
+ Type: traf 
+ 
+ Offset: 363339
+ Size:  32
+ Type: tfhd 
+ 
+ Offset: 363371
+ Size:  16
+ Type: tfdt 
+ 
+ Offset: 363387
+ Size:  20
+ Type: trun 
+ 
+ Offset: 363407
+ Size:  419
+ Type: mdat 
+ 
+ Offset: 363826
+ Size:  1820
+ Type: moof 
+ 
+ Offset: 363834
+ Size:  16
+ Type: mfhd 
+ 
+ Offset: 363850
+ Size:  1796
+ Type: traf 
+ 
+ Offset: 363858
+ Size:  28
+ Type: tfhd 
+ 
+ Offset: 363886
+ Size:  16
+ Type: tfdt 
+ 
+ Offset: 363902
+ Size:  1744
+ Type: trun 
+ 
+ Offset: 365646
+ Size:  169522
+ Type: mdat 
+ 
+ Offset: 535168
+ Size:  0
+ Type: moof 
+ 
+ Offset: 535168
+ Size:  100
+ Type: moof 
+ 
+ Offset: 535176
+ Size:  16
+ Type: mfhd 
+ 
+ Offset: 535192
+ Size:  76
+ Type: traf 
+ 
+ Offset: 535200
+ Size:  32
+ Type: tfhd 
+ 
+ Offset: 535232
+ Size:  16
+ Type: tfdt 
+ 
+ Offset: 535248
+ Size:  20
+ Type: trun 
+ 
+ Offset: 535268
+ Size:  422
+ Type: mdat 
+ 
+ Offset: 535690
+ Size:  1820
+ Type: moof 
+ 
+ Offset: 535698
+ Size:  16
+ Type: mfhd 
+ 
+ Offset: 535714
+ Size:  1796
+ Type: traf 
+ 
+ Offset: 535722
+ Size:  28
+ Type: tfhd 
+ 
+ Offset: 535750
+ Size:  16
+ Type: tfdt 
+ 
+ Offset: 535766
+ Size:  1744
+ Type: trun 
+ 
+ Offset: 537510
+ Size:  167681
+ Type: mdat 
+ 
+ Offset: 705191
+ Size:  100
+ Type: moof 
+ 
+ Offset: 705199
+ Size:  16
+ Type: mfhd 
+ 
+ Offset: 705215
+ Size:  76
+ Type: traf 
+ 
+ Offset: 705223
+ Size:  32
+ Type: tfhd 
+ 
+ Offset: 705255
+ Size:  16
+ Type: tfdt 
+ 
+ Offset: 705271
+ Size:  20
+ Type: trun 
+ 
+ Offset: 705291
+ Size:  440
+ Type: mdat 
+ 
+ Offset: 705731
+ Size:  1820
+ Type: moof 
+ 
+ Offset: 705739
+ Size:  16
+ Type: mfhd 
+ 
+ Offset: 705755
+ Size:  1796
+ Type: traf 
+ 
+ Offset: 705763
+ Size:  28
+ Type: tfhd 
+ 
+ Offset: 705791
+ Size:  16
+ Type: tfdt 
+ 
+ Offset: 705807
+ Size:  1744
+ Type: trun 
+ 
+ Offset: 707551
+ Size:  168588
+ Type: mdat 
+ 
+ Offset: 876139
+ Size:  100
+ Type: moof 
+ 
+ Offset: 876147
+ Size:  16
+ Type: mfhd 
+ 
+ Offset: 876163
+ Size:  76
+ Type: traf 
+ 
+ Offset: 876171
+ Size:  32
+ Type: tfhd 
+ 
+ Offset: 876203
+ Size:  16
+ Type: tfdt 
+ 
+ Offset: 876219
+ Size:  20
+ Type: trun 
+ 
+ Offset: 876239
+ Size:  386
+ Type: mdat 
+ 
+ Offset: 876625
+ Size:  1820
+ Type: moof 
+ 
+ Offset: 876633
+ Size:  16
+ Type: mfhd 
+ 
+ Offset: 876649
+ Size:  1796
+ Type: traf 
+ 
+ Offset: 876657
+ Size:  28
+ Type: tfhd 
+ 
+ Offset: 876685
+ Size:  16
+ Type: tfdt 
+ 
+ Offset: 876701
+ Size:  1744
+ Type: trun 
+ 
+ Offset: 878445
+ Size:  166945
+ Type: mdat 
+ 
+ Offset: 1045390
+ Size:  100
+ Type: moof 
+ 
+ Offset: 1045398
+ Size:  16
+ Type: mfhd 
+ 
+ Offset: 1045414
+ Size:  76
+ Type: traf 
+ 
+ Offset: 1045422
+ Size:  32
+ Type: tfhd 
+ 
+ Offset: 1045454
+ Size:  16
+ Type: tfdt 
+ 
+ Offset: 1045470
+ Size:  20
+ Type: trun 
+ 
+ Offset: 1045490
+ Size:  344
+ Type: mdat 
+ 
+ Offset: 1045834
+ Size:  128
+ Type: moof 
+ 
+ Offset: 1045842
+ Size:  16
+ Type: mfhd 
+ 
+ Offset: 1045858
+ Size:  104
+ Type: traf 
+ 
+ Offset: 1045866
+ Size:  28
+ Type: tfhd 
+ 
+ Offset: 1045894
+ Size:  16
+ Type: tfdt 
+ 
+ Offset: 1045910
+ Size:  52
+ Type: trun 
+ 
+ Offset: 1045962
+ Size:  2590
+ Type: mdat 
+ 

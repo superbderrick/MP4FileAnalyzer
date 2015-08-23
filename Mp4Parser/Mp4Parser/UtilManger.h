@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <iostream>
 #include "ErrorManager.h"
-#include "Option.h"
+
 
 
 
@@ -26,7 +26,6 @@ class UtilManger
 private:
     
 public:
-    Option * sampleOption;
     ErrorManager * errorManger;
     
     UtilManger();
