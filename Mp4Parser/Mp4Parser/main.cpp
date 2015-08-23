@@ -16,14 +16,13 @@ int main(int argc, const char * argv[]) {
     
     UtilManger * utilManger = new UtilManger;
     
-    char fileName[10];
+   char fileName[10];
     
     if( argc != 2 )
     {
         std::cout << "Usage: " << argv[ 0 ] << " FILENAME\n";
     }
-    
-  //  strcpy(fileName,argv[1]);
+    strcpy(fileName,argv[1]);
     
     Mp4Parser * mp4Parser = new Mp4Parser(fileName);
     

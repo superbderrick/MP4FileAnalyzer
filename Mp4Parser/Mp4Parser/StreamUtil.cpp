@@ -20,8 +20,10 @@ StreamUtil::~StreamUtil()
 
 uint32_t StreamUtil::readBigEndianUnsignedInteger(std::ifstream *file)
 {
+    
     uint8_t  c[ 4 ];
     uint32_t n;
+    uint32_t * tt = new uint32_t;
     
     file->read( ( char * )c, 4 );
     
@@ -30,7 +32,8 @@ uint32_t StreamUtil::readBigEndianUnsignedInteger(std::ifstream *file)
     | ( uint32_t )c[ 2 ] << 8
     | ( uint32_t )c[ 3 ];
     
-    return n;
+    tt = &n;
+    return *tt;
 };
 
 char * StreamUtil::readBoxType(std::ifstream *file)

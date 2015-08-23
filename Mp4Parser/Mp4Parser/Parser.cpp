@@ -10,14 +10,14 @@
 
 Parser::Parser()
 {
-    std::cout << "Processer() iscalled; "<< std::endl;
+    std::cout << "Parser() iscalled; "<< std::endl;
     streamUtil = new StreamUtil();
 
 };
 
 Parser::~Parser()
 {
-    std::cout << " ~ Processer() iscalled; "<< std::endl;
+    std::cout << " ~ Parser() iscalled; "<< std::endl;
     delete streamUtil;
 };
 
@@ -25,6 +25,8 @@ Parser::~Parser()
 
 uint Parser::start(std::ifstream * fileStream , BoxModel * boxModel)
 {
+         std::cout << " Parser start " << std::endl;
+    
     uint32_t             offset = 0;
     uint32_t             length;
     char                 type[ BOXTYPE_NAME_SIZE ] ;
@@ -38,6 +40,8 @@ uint Parser::start(std::ifstream * fileStream , BoxModel * boxModel)
         length = streamUtil->readBigEndianUnsignedInteger(fileStream);
         strcpy(type, streamUtil->readBoxType(fileStream));
         
+        std::cout << length<< std::endl;
+        std::cout << type<< std::endl;
         
         if (fileStream->eof() == true)
             break;
@@ -69,6 +73,7 @@ uint Parser::start(std::ifstream * fileStream , BoxModel * boxModel)
         
         box = new Box(length, type, offset);
         boxModel->BoxesVector.push_back(box);
+
         
         fileStream->seekg(offset);
 

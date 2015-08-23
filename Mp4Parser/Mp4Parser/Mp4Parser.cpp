@@ -10,7 +10,9 @@
 
 Mp4Parser::Mp4Parser(char * fileName)
 {
-    fileName = "test7.mp4";
+    std::cout << "Mp4Parser called " << std::endl;
+    std::cout << fileName << std::endl;
+    
     init(fileName);
 };
 
@@ -21,22 +23,26 @@ Mp4Parser::~Mp4Parser()
 
 void Mp4Parser::start()
 {
+     std::cout << " mp4 parser start " << std::endl;
+    
     int result = 0;
+    
     if (mParser->start(inputFile, mBoxModel) == 1)
     {
-        result = 1;
+        result = SUCCESS;
         std::cout << SUCCESS << std::endl;
     }
     else
     {
-        result = 0;
+        result = FAILURE;
         std::cout << FAILURE << std::endl;
     }
+    
         
 
     // callback
     
-    if(result == 1)
+    if(result == SUCCESS)
     {
       mBuilder->makeTextfile(mBoxModel);
     }
