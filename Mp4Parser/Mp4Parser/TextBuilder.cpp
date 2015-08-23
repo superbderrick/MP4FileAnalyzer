@@ -24,9 +24,11 @@ uint TextBuilder::makeTextfile(BoxModel * boxdata){
     
     for (std::vector<int>::size_type i = 0; i < boxdata->BoxesVector.size(); ++i)
     {
-        outFile << " Type: "  << boxdata->BoxesVector[i]->mType << std::endl;
         outFile << " Offset: " << boxdata->BoxesVector[i]->mOffset << std::endl;
-        outFile << " Size:  " << boxdata->BoxesVector[i]->mSize<< " \n " << std::endl;
+        outFile << " Size:  " << boxdata->BoxesVector[i]->mSize << std::endl;
+        outFile << " Type: "  << boxdata->BoxesVector[i]->mType <<  " \n " << std::endl;
+        
+        
     }
     outFile.close();
     
