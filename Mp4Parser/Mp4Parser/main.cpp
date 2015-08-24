@@ -24,9 +24,12 @@ int main(int argc, const char * argv[]) {
     }
     strcpy(fileName,argv[1]);
     
+    // debug ""
     Mp4Parser * mp4Parser = new Mp4Parser(fileName);
     
     mp4Parser->start();
+    
+    delete mp4Parser;
     
     return 0;
 }

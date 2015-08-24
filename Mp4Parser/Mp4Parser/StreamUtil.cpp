@@ -15,7 +15,7 @@ StreamUtil::StreamUtil()
 
 StreamUtil::~StreamUtil()
 {
-    
+    std::cout << "~StreamUtill" << std::endl;
 };
 
 uint32_t StreamUtil::readBigEndianUnsignedInteger(std::ifstream *file)
@@ -39,8 +39,8 @@ uint32_t StreamUtil::readBigEndianUnsignedInteger(std::ifstream *file)
 char * StreamUtil::readBoxType(std::ifstream *file)
 {
     
-        char * typeBuf = new char[5];
-        file->read(typeBuf,4);
-        return typeBuf;
+  char * typeBuf = new char[5];
+  file->read(typeBuf,4);
+  return typeBuf;
 };
 

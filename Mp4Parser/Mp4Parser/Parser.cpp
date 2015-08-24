@@ -25,8 +25,9 @@ Parser::~Parser()
 
 uint Parser::start(std::ifstream * fileStream , BoxModel * boxModel)
 {
-         std::cout << " Parser start " << std::endl;
+    std::cout << " Parser start " << std::endl;
     
+    uint boxCount = 0;
     uint32_t             offset = 0;
     uint32_t             length;
     char                 type[ BOXTYPE_NAME_SIZE ] ;
@@ -40,12 +41,13 @@ uint Parser::start(std::ifstream * fileStream , BoxModel * boxModel)
         length = streamUtil->readBigEndianUnsignedInteger(fileStream);
         strcpy(type, streamUtil->readBoxType(fileStream));
         
-        std::cout << length<< std::endl;
-        std::cout << type<< std::endl;
-        
+//        std::cout << length<< std::endl;
+//        std::cout << type<< std::endl;
+//        
         if (fileStream->eof() == true)
             break;
         
+        // todo : change to for
         if (
             strcmp(type, "dinf") == 0
             || strcmp(type, "edts") == 0
@@ -68,7 +70,10 @@ uint Parser::start(std::ifstream * fileStream , BoxModel * boxModel)
         }
         else
         {
-            offset = offset +length;
+            if(boxCount == DEFAULT_OFFSET)
+                offset = DEFAULT_OFFSET;
+            else
+                offset = offset +length;
         }
         
         box = new Box(length, type, offset);
@@ -76,10 +81,11 @@ uint Parser::start(std::ifstream * fileStream , BoxModel * boxModel)
 
         
         fileStream->seekg(offset);
+        boxCount ++;
 
     }
 
-    return 1;
+    return SUCCESS;
 };
 
 

@@ -60,6 +60,7 @@ void Mp4Parser::init(char * fileName)
 
 void Mp4Parser::deletelibary()
 {
+    std::cout << "deleteLib" << std::endl;
     delete mParser;
     delete mBuilder;
     delete mBoxModel;
