@@ -41,13 +41,9 @@ uint Parser::start(std::ifstream * fileStream , BoxModel * boxModel)
         length = streamUtil->readBigEndianUnsignedInteger(fileStream);
         strcpy(type, streamUtil->readBoxType(fileStream));
         
-//        std::cout << length<< std::endl;
-//        std::cout << type<< std::endl;
-//        
         if (fileStream->eof() == true)
             break;
         
-        // todo : change to for
         if (
             strcmp(type, "dinf") == 0
             || strcmp(type, "edts") == 0

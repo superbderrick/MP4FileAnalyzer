@@ -38,10 +38,6 @@ void Mp4Parser::start()
         std::cout << FAILURE << std::endl;
     }
     
-        
-
-    // callback
-    
     if(result == SUCCESS)
     {
       mBuilder->makeTextfile(mBoxModel);
