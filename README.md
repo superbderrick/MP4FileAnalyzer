@@ -15,24 +15,10 @@ The Project will keep on do , In order to learn Basic Multimedia information and
 5.document.
 
 
-How to start ~ 
-
-
-./ Mp4Parser - mp4file
-
 
 # Notice
 
 Currently It has been completed by step1. Since step2 It  will proceed to another project.
 
 
-
-
-by Derrick
-
-- kang.derrick@gmail.com
-
-- http://sensationaljy.tistory.com/
-
-- kr.linkedin.com/in/sensational/
 
