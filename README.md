@@ -1,24 +1,12 @@
 # MP4FileAnalyzer.
 
-This is a Simple Analyzer for MP4 Container. 
+Simple Analyzer of MP4 Container box types.
 
-The Project will keep on do , In order to learn Basic Multimedia information and c/c++.
+# How to
 
-1.make Parser to parsing data like Each boxes offset , type , size.
+./ Mp4Parser ".mp4 file"
 
-2.make on detail parser to figure out from each boxed data.
-
-3.working on debuger and log manger. 
-
-4.build system with make. 
-
-5.document.
-
-
-
-# Notice
-
-Currently It has been completed by step1. Since step2 It  will proceed to another project.
+ 
 
 
 
